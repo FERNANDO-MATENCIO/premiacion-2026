@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premiación 2026 · Indurama</title>
+<style>
+/* ---------- Tipografías locales (funciona sin internet) ---------- */
+@font-face{font-family:'Cinzel';font-weight:400 900;src:url(fuentes/cinzel.woff2) format('woff2');font-display:block}
+@font-face{font-family:'Oswald';font-weight:200 700;src:url(fuentes/oswald.woff2) format('woff2');font-display:block}
+@font-face{font-family:'Montserrat';font-weight:100 900;src:url(fuentes/montserrat.woff2) format('woff2');font-display:block}
+
+:root{
+  --oro-texto: linear-gradient(180deg,#fff7d1 0%,#f8dc86 20%,#e0ae46 42%,#a46b17 54%,#d9a948 70%,#fbe7a4 88%,#fff3c4 100%);
+  --oro-placa: linear-gradient(180deg,#fff2bf 0%,#f1cf78 18%,#d8a646 45%,#b98426 60%,#e8c46c 82%,#f9e3a0 100%);
+  --oro-borde: linear-gradient(135deg,#fff3c2 0%,#c9952f 22%,#fbe5a1 42%,#9c6514 60%,#f3d17d 80%,#b07a22 100%);
+  --tinta: #2b1a04;
+  --tinta-luz: rgba(255,240,190,.7);
+  --sombra1: #6b4510; --sombra2: #3d2506;
+  --brillo: rgba(255,200,90,.5); --brillo2: rgba(255,200,90,.35);
+  --borde-osc: rgba(80,50,10,.8); --borde-int: rgba(60,35,5,.9);
+  --linea: #f3d07a; --linea2: #fff1bd; --destello: rgba(255,240,200,.85);
+  --l1:#fff4c4; --l2:#ecc160; --l3:#a36a16; --l4:#f3d27d; --l-borde:#5a3a0a;
+}
+/* ---------- Tema PLATA (segundo puesto) ---------- */
+.plata{
+  --oro-texto: linear-gradient(180deg,#ffffff 0%,#eef1f5 20%,#c3cad3 42%,#6e7783 54%,#b3bbc5 70%,#f1f4f7 88%,#ffffff 100%);
+  --oro-placa: linear-gradient(180deg,#fbfcfd 0%,#e3e7ec 18%,#bcc3cc 45%,#98a1ad 60%,#d4d9df 82%,#f2f4f6 100%);
+  --oro-borde: linear-gradient(135deg,#ffffff 0%,#9aa3ad 22%,#f3f5f8 42%,#5d6671 60%,#e1e5ea 80%,#7b8490 100%);
+  --tinta: #1b2129; --tinta-luz: rgba(255,255,255,.75);
+  --sombra1: #4a525c; --sombra2: #23282e;
+  --brillo: rgba(215,228,245,.45); --brillo2: rgba(215,228,245,.3);
+  --borde-osc: rgba(40,46,54,.85); --borde-int: rgba(30,35,42,.9);
+  --linea: #d3dae2; --linea2: #ffffff; --destello: rgba(235,242,255,.85);
+  --l1:#ffffff; --l2:#cfd5dc; --l3:#6c7581; --l4:#e6eaee; --l-borde:#39404a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#04140b;cursor:default}
+body.oculto-cursor{cursor:none}
+
+/* ---------- Fondo ---------- */
+#fondo{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#velo{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 38% at 50% 8%, rgba(255,214,120,.22), transparent 70%),
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.05) 65%, rgba(0,0,0,.6) 100%),
+    radial-gradient(ellipse 85% 80% at 50% 50%, transparent 55%, rgba(0,0,0,.55) 100%);}
+#particulas{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;mix-blend-mode:screen}
+
+/* ---------- Escenario 1920×1080 escalado ---------- */
+#escenario{position:fixed;left:50%;top:50%;width:1920px;height:1080px;z-index:3;transform-origin:center center}
+.diapo{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s .8s}
+.diapo.activa{opacity:1;visibility:visible;transition:opacity .8s ease}
+
+.logo{position:absolute;top:40px;right:56px;width:200px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55))}
+
+/* ---------- Título ---------- */
+.titulo{position:absolute;top:40px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:14px}
+.titulo h1{font-family:'Cinzel',serif;font-weight:900;font-size:90px;letter-spacing:2px;line-height:1;white-space:nowrap;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat,var(--oro-texto);
+  background-size:260% 100%,100% 100%;background-position:160% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 var(--sombra1)) drop-shadow(0 4px 0 var(--sombra2)) drop-shadow(0 10px 22px rgba(0,0,0,.75));
+  animation:brillo 6s ease-in-out infinite 2s}
+.texto-metal{background:var(--oro-texto);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 var(--sombra2)) drop-shadow(0 6px 14px rgba(0,0,0,.8))}
+@keyframes brillo{0%,70%{background-position:160% 0,0 0}100%{background-position:-60% 0,0 0}}
+.laurel{width:112px;height:170px;flex:none;margin-top:-14px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.6))}
+.laurel.der{transform:scaleX(-1)}
+
+/* ---------- Placa de zona ---------- */
+.zona{position:absolute;top:166px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:22px}
+.zona .linea{width:300px;height:3px;background:linear-gradient(90deg,transparent,var(--linea) 60%,var(--linea2))}
+.zona .linea.der{transform:scaleX(-1)}
+/* línea PRIMER / SEGUNDO PUESTO */
+.puesto{position:absolute;top:254px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:20px}
+.puesto b{font:800 25px/1 'Montserrat',sans-serif;letter-spacing:11px;padding-left:11px}
+.puesto i{width:9px;height:9px;transform:rotate(45deg);background:var(--oro-borde);flex:none}
+.puesto u{width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--linea))}
+.puesto u.der{transform:scaleX(-1)}
+.placa{position:relative;clip-path:polygon(30px 0,calc(100% - 30px) 0,100% 50%,calc(100% - 30px) 100%,30px 100%,0 50%);
+  background:var(--oro-borde);box-shadow:0 0 30px var(--brillo)}
+.placa::before{content:"";position:absolute;inset:5px;clip-path:inherit;background:var(--oro-placa)}
+.placa::after{content:"";position:absolute;inset:5px;clip-path:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 45%);pointer-events:none}
+.placa span{position:relative;z-index:1;display:block;color:var(--tinta);text-align:center;white-space:nowrap;
+  text-shadow:0 1px 0 var(--tinta-luz)}
+.zona .placa{padding:12px 92px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.6))}
+.zona .placa span{font-family:'Oswald',sans-serif;font-weight:600;font-size:56px;letter-spacing:5px;line-height:1.05}
+
+/* ---------- Tarjetas ---------- */
+.tarjetas{position:absolute;top:304px;left:0;right:0;display:flex;justify-content:center;gap:76px}
+.premiado{position:relative;width:452px;display:flex;flex-direction:column;align-items:center}
+.marco{position:relative;width:440px;height:550px;padding:6px;border-radius:6px;background:var(--oro-borde);
+  box-shadow:0 0 0 1px var(--borde-osc),0 0 36px var(--brillo2),0 24px 60px rgba(0,0,0,.7)}
+/* medalla con el número de puesto */
+.medalla{position:absolute;top:-24px;right:-24px;z-index:5;width:86px;height:86px;border-radius:50%;padding:5px;
+  background:var(--oro-borde);box-shadow:0 0 0 1px var(--borde-osc),0 6px 16px rgba(0,0,0,.7),0 0 22px var(--brillo)}
+.medalla span{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;
+  background:var(--oro-placa);box-shadow:inset 0 0 0 2px var(--borde-osc);
+  font:900 46px/1 'Cinzel',serif;color:var(--tinta);text-shadow:0 1px 0 var(--tinta-luz);padding-top:2px}
+.medio{position:relative;width:100%;height:100%;overflow:hidden;border-radius:3px;background:#000}
+.medio video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.medio::after{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 2px var(--borde-int),inset 0 0 40px rgba(0,0,0,.55);
+  background:linear-gradient(180deg,transparent 70%,rgba(0,0,0,.45))}
+.foto{position:absolute;right:-2%;bottom:0;height:86%;max-width:92%;object-fit:contain;object-position:bottom right;z-index:2;
+  filter:drop-shadow(-6px 0 18px rgba(0,0,0,.5))}
+.silueta{position:absolute;right:4%;bottom:0;width:60%;z-index:2;opacity:.9;transition:opacity .4s}
+body.sin-siluetas .silueta{opacity:0}
+.destello{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;
+  background:linear-gradient(115deg,transparent 30%,var(--destello) 50%,transparent 70%);background-size:300% 100%}
+
+.premiado .placa{margin-top:-46px;z-index:2;width:100%;padding:14px 40px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.65))}
+.premiado .placa span{font-family:'Oswald',sans-serif;font-weight:600;font-size:44px;letter-spacing:1.5px;line-height:1.1}
+.tienda{margin-top:20px;display:flex;align-items:center;gap:16px;font-family:'Montserrat',sans-serif;font-weight:600;
+  font-size:27px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;white-space:nowrap;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.tienda::before,.tienda::after{content:"";width:42px;height:2px;background:var(--linea)}
+
+/* ---------- Carátula de categoría ---------- */
+.car-centro{position:absolute;top:190px;left:0;right:0;display:flex;flex-direction:column;align-items:center}
+.car-pre{font:700 60px/1 'Cinzel',serif;letter-spacing:22px;padding-left:22px}
+.car-fila{display:flex;align-items:center;gap:22px;margin-top:14px}
+.car-fila .laurel{width:170px;height:258px;margin-top:0}
+.car-fila h1{font-family:'Cinzel',serif;font-weight:900;font-size:170px;line-height:1;letter-spacing:4px;white-space:nowrap;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat,var(--oro-texto);
+  background-size:260% 100%,100% 100%;background-position:160% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 0 var(--sombra1)) drop-shadow(0 6px 0 var(--sombra2)) drop-shadow(0 14px 30px rgba(0,0,0,.8))}
+.cierre .car-centro{top:150px}
+.car-sub{font:900 66px/1.1 'Cinzel',serif;letter-spacing:5px;margin-top:-8px;white-space:nowrap}
+.diapo.activa .car-sub{animation:sube 1s .8s cubic-bezier(.2,.8,.2,1) both}
+.car-orn{display:flex;align-items:center;gap:18px;margin-top:22px}
+.car-orn u{width:260px;height:2px;background:linear-gradient(90deg,transparent,var(--linea))}
+.car-orn u.der{transform:scaleX(-1)}
+.car-orn i{width:12px;height:12px;transform:rotate(45deg);background:var(--oro-borde)}
+.car-frase{margin-top:24px;font:500 38px/1.3 'Montserrat',sans-serif;letter-spacing:1px;color:#f7ecd2;text-align:center;
+  text-shadow:0 2px 12px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.8)}
+.guardianes{position:absolute;bottom:64px;left:0;right:0;display:flex;justify-content:center;gap:34px}
+.guardian{width:124px;height:124px;border-radius:50%;padding:5px;background:var(--oro-borde);
+  box-shadow:0 0 0 1px var(--borde-osc),0 8px 20px rgba(0,0,0,.7),0 0 20px var(--brillo2)}
+.guardian div{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#000}
+.guardian video{position:absolute;width:205%;left:-6%;top:-5%}
+.diapo.activa .car-pre{animation:aparece 1s .2s ease both}
+.diapo.activa .car-fila h1{animation:entraTitulo 1.3s .35s cubic-bezier(.2,.8,.2,1) both,brillo 6s ease-in-out infinite 2.6s}
+.diapo.activa .car-orn{animation:abrePlaca 1s .9s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .car-frase{animation:sube 1s 1.1s cubic-bezier(.2,.8,.2,1) both}
+.guardian{opacity:0;transform:scale(.4)}
+.diapo.activa .guardian{animation:pop .8s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes sube{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.diapo.activa .puesto{animation:aparece 1s 1s ease both}
+.diapo.activa .medalla{animation:pop .8s 1.6s cubic-bezier(.3,1.5,.5,1) both}
+
+/* ---------- Animaciones de entrada ---------- */
+.anim{opacity:0}
+.diapo.activa .titulo h1{animation:entraTitulo 1.2s cubic-bezier(.2,.8,.2,1) both,brillo 6s ease-in-out infinite 2.4s}
+.diapo.activa .laurel.izq{animation:entraLaurelI 1.2s .25s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .laurel.der{animation:entraLaurelD 1.2s .25s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .zona .placa{animation:abrePlaca .9s .6s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .zona .linea{animation:creceLinea 1s .9s ease-out both}
+.diapo.activa .logo{animation:aparece 1.2s .3s ease both}
+@keyframes entraTitulo{from{opacity:0;transform:translateY(-40px) scale(.94);filter:blur(10px)}to{opacity:1;transform:none}}
+@keyframes entraLaurelI{from{opacity:0;transform:rotate(-25deg) scale(.6)}to{opacity:1;transform:none}}
+@keyframes entraLaurelD{from{opacity:0;transform:scaleX(-1) rotate(-25deg) scale(.6)}to{opacity:1;transform:scaleX(-1)}}
+@keyframes abrePlaca{from{opacity:0;transform:scaleX(.1)}to{opacity:1;transform:none}}
+@keyframes creceLinea{from{opacity:0;transform:scaleX(0)}to{opacity:1}}
+.zona .linea.izq{transform-origin:right}
+.diapo.activa .zona .linea.der{animation-name:creceLineaD}
+@keyframes creceLineaD{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(-1)}}
+@keyframes aparece{from{opacity:0}to{opacity:1}}
+
+.premiado{opacity:0;transform:translateY(50px) scale(.92);filter:blur(10px) brightness(2);
+  transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.8,.2,1),filter 1.1s ease}
+.premiado .placa,.premiado .tienda{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+/* las tres entran juntas, después del título */
+.diapo.activa .premiado{opacity:1;transform:none;filter:none;transition-delay:.7s}
+.diapo.activa .premiado .placa{opacity:1;transform:none;transition-delay:1.3s}
+.diapo.activa .premiado .tienda{opacity:1;transform:none;transition-delay:1.5s}
+.diapo.activa .premiado .destello{animation:barre 1.3s 1s ease-out both}
+
+/* etiqueta de región sobre el borde superior de la tarjeta */
+.region{position:absolute;top:-17px;left:50%;transform:translateX(-50%);z-index:4;white-space:nowrap;
+  font:700 19px/1 'Montserrat',sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:#fff3cf;
+  padding:8px 22px;border-radius:30px;background:linear-gradient(180deg,#2c2008,#120c02);
+  border:2px solid #e3b452;box-shadow:0 4px 14px rgba(0,0,0,.6),0 0 14px rgba(255,200,90,.35)}
+@keyframes barre{0%{opacity:1;background-position:120% 0}100%{opacity:0;background-position:-20% 0}}
+
+/* ---------- Ayuda ---------- */
+#ayuda{position:fixed;left:18px;bottom:14px;z-index:10;font:500 13px/1.5 'Montserrat',sans-serif;color:rgba(255,255,255,.75);
+  background:rgba(0,0,0,.45);padding:8px 12px;border-radius:6px;transition:opacity .6s}
+#ayuda.oculta{opacity:0;pointer-events:none}
+#ayuda b{color:#f3d07a}
+</style>
+</head>
+<body>
+
+<video id="fondo" src="videos/fondo_jungla.mp4" autoplay muted loop playsinline preload="auto"></video>
+<div id="velo"></div>
+<canvas id="particulas"></canvas>
+<div id="escenario"></div>
+<div id="ayuda">
+  <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Ventas / Flooring / Capacitación &nbsp;·&nbsp;
+  <b>F</b> pantalla completa &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
+</div>
+
+<script>
+/* =====================================================================
+   DATOS — aquí se editan las pestañas, nombres, tiendas, animales y fotos.
+   foto: ruta a PNG sin fondo (ej. "fotos/dayhana.png"); null = silueta.
+   ===================================================================== */
+// Cada animal representa una región (no cambiar salvo que cambie la regla).
+const REGIONES = {
+  LIMA_NORTE:        { animal: "videos/LOBO_loop.mp4",   region: "Lima Norte" },
+  LIMA_SUR:          { animal: "videos/HALCON_loop.mp4", region: "Lima Sur" },
+  LIMA_CHIMBOTE:     { animal: "videos/LEON_loop.mp4",   region: "Lima - Chimbote" },
+  NORTE:             { animal: "videos/AGUILA_loop.mp4", region: "Norte" },
+  ORIENTE_SUR:       { animal: "videos/PIRANA_loop.mp4", region: "Oriente - Sur" },
+  CENTRO_SUR_CHICO:  { animal: "videos/JAGUAR_loop.mp4", region: "Centro - Sur Chico" },
+};
+const MOSTRAR_REGION = false;                // etiqueta con la región sobre cada tarjeta
+const FOTO_PLANTILLA = "fotos/PROMOTOR.png"; // se usa mientras una premiada no tenga foto propia; si el archivo no existe, sale una silueta
+
+const P = (region, nombre, tienda, foto) => ({ ...REGIONES[region], nombre, tienda, foto });
+
+// Carátulas: una por categoría, con su frase.
+const CATEGORIAS = [
+  { nombre: "VENTAS",       frase: "Reconocimiento al mejor desempeño en ventas 2026" },
+  { nombre: "FLOORING",     frase: "Reconocimiento a la excelencia en exhibición y punto de venta 2026" },
+  { nombre: "CAPACITACIÓN", frase: "Reconocimiento al compromiso con el aprendizaje 2026" },
+];
+const ZONAS = ["LIMA", "PROVINCIA"];
+const ORDEN_PUESTOS = [2, 1];   // primero se muestra el 2do puesto (plata), luego el 1ro (oro)
+
+/* PREMIADOS[categoría][zona][puesto] = 3 premiadas (una por región, en este orden).
+   Ejemplo con foto propia: P("LIMA_NORTE", "Dayhana Mendoza", "Saga Bellavista", "fotos/dayhana.png") */
+const PREMIADOS = {
+  "VENTAS": {
+    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
+                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
+    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
+                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+  },
+  "FLOORING": {
+    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
+                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
+    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
+                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+  },
+  "CAPACITACIÓN": {
+    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
+                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
+    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
+                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+  },
+};
+
+// Secuencia: carátula → Lima 2do → Lima 1ro → Provincia 2do → Provincia 1ro, por cada categoría.
+const DIAPOS = [];
+CATEGORIAS.forEach(c => {
+  DIAPOS.push({ tipo: "caratula", categoria: c.nombre, frase: c.frase });
+  ZONAS.forEach(z => ORDEN_PUESTOS.forEach(p =>
+    DIAPOS.push({ tipo: "premios", categoria: c.nombre, zona: z, puesto: p, premiados: PREMIADOS[c.nombre][z][p] })));
+});
+// Diapositiva final
+DIAPOS.push({ tipo: "cierre", titulo: "¡Felicitaciones", linea2: "a todos nuestros premiados!",
+              frase: "Gracias por su compromiso durante el 2026" });
+const LOGO = "img/indurama-logo-blanco.png";
+
+/* ---------- Laurel dorado (SVG generado) ---------- */
+function laurelSVG(id){
+  // tallo curvo (Bézier cuadrática) de abajo-derecha hacia arriba; hojas a ambos lados
+  const P0=[74,168], P1=[2,100], P2=[44,6], hojas=[];
+  const B=t=>[0,1].map(k=>(1-t)**2*P0[k]+2*(1-t)*t*P1[k]+t*t*P2[k]);
+  const D=t=>[0,1].map(k=>2*(1-t)*(P1[k]-P0[k])+2*t*(P2[k]-P1[k]));
+  const hoja=(x,y,ang,L,W)=>`<path d="M0 0 C ${W} ${-L*.3} ${W*.8} ${-L*.75} 0 ${-L} C ${-W*.8} ${-L*.75} ${-W} ${-L*.3} 0 0Z" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${ang.toFixed(1)})"/>`;
+  for(let i=0;i<8;i++){
+    const t=.06+i*.115, [x,y]=B(t), [dx,dy]=D(t), a=Math.atan2(dx,-dy)*180/Math.PI, s=1-i*.05;
+    hojas.push(hoja(x,y,a-50,31*s,12*s), hoja(x,y,a+44,29*s,11*s));
+  }
+  const [dx,dy]=D(1); hojas.push(hoja(P2[0],P2[1],Math.atan2(dx,-dy)*180/Math.PI,28,10));
+  return `<svg class="laurel" viewBox="-28 -28 136 206" aria-hidden="true">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color:var(--l1)"/><stop offset=".3" style="stop-color:var(--l2)"/>
+      <stop offset=".62" style="stop-color:var(--l3)"/><stop offset="1" style="stop-color:var(--l4)"/></linearGradient></defs>
+    <path d="M${P0} Q${P1} ${P2}" fill="none" stroke="url(#${id})" stroke-width="4" stroke-linecap="round"/>
+    <g fill="url(#${id})" style="stroke:var(--l-borde)" stroke-width=".9">${hojas.join("")}</g></svg>`;
+}
+
+const SILUETA = `<svg class="silueta" viewBox="0 0 260 330" aria-hidden="true">
+  <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/></linearGradient></defs>
+  <g fill="url(#sg)">
+    <ellipse cx="130" cy="96" rx="52" ry="62"/>
+    <path d="M14 330 C14 236 58 172 130 172 C202 172 246 236 246 330 Z"/></g>
+  <text x="130" y="275" text-anchor="middle" font-family="Montserrat" font-weight="700" font-size="17" letter-spacing="2" fill="#fff" fill-opacity=".85">FOTO DEL PREMIADO</text>
+  </svg>`;
+
+/* ---------- Construcción ---------- */
+const esc = document.getElementById("escenario");
+const laurel=(id,lado)=>laurelSVG(id).replace('class="laurel"',`class="laurel ${lado}"`);
+const ANIMALES=Object.values(REGIONES).map(r=>r.animal);
+DIAPOS.forEach((d,i)=>{
+  const el=document.createElement("section");
+  el.className="diapo "+d.tipo+(d.puesto===2?" plata":"");
+  if(d.tipo==="caratula"||d.tipo==="cierre"){
+    if(d.tipo==="cierre") el.className="diapo caratula cierre";
+    el.innerHTML=`
+      <img class="logo" src="${LOGO}" alt="Indurama">
+      <div class="car-centro">
+        ${d.tipo==="caratula"?`<div class="car-pre texto-metal">PREMIACIÓN</div>`:""}
+        <div class="car-fila">${laurel("lg"+i+"a","izq")}<h1>${(d.categoria||d.titulo).toUpperCase()}</h1>${laurel("lg"+i+"b","der")}</div>
+        ${d.linea2?`<div class="car-sub texto-metal">${d.linea2.toUpperCase()}</div>`:""}
+        <div class="car-orn"><u></u><i></i><u class="der"></u></div>
+        <div class="car-frase">${d.frase}</div>
+      </div>
+      <div class="guardianes">${ANIMALES.map((a,k)=>`<div class="guardian" style="animation-delay:${1.3+k*.12}s"><div>
+        <video src="${a}" muted loop playsinline preload="auto"></video></div></div>`).join("")}</div>`;
+    esc.appendChild(el); return;
+  }
+  el.innerHTML=`
+    <img class="logo" src="${LOGO}" alt="Indurama">
+    <div class="titulo">${laurel("lg"+i+"a","izq")}
+      <h1>PREMIACIÓN ${d.categoria}</h1>${laurel("lg"+i+"b","der")}</div>
+    <div class="zona"><div class="linea izq"></div><div class="placa"><span>${d.zona}</span></div><div class="linea der"></div></div>
+    <div class="puesto"><u></u><i></i><b class="texto-metal">${d.puesto===1?"PRIMER PUESTO":"SEGUNDO PUESTO"}</b><i></i><u class="der"></u></div>
+    <div class="tarjetas">${d.premiados.map(p=>`
+      <div class="premiado">
+        <div class="marco"><div class="medalla"><span>${d.puesto}</span></div><div class="medio">
+          <video src="${p.animal}" muted loop playsinline preload="auto"></video>
+          ${(p.foto||FOTO_PLANTILLA)?`<img class="foto" src="${p.foto||FOTO_PLANTILLA}" alt="" onerror="this.outerHTML=SILUETA">`:SILUETA}
+          <div class="destello"></div>
+        </div>${MOSTRAR_REGION?`<div class="region">${p.region}</div>`:""}</div>
+        <div class="placa"><span>${p.nombre.toUpperCase()}</span></div>
+        <div class="tienda">${p.tienda}</div>
+      </div>`).join("")}</div>`;
+  esc.appendChild(el);
+});
+
+/* ---------- Escala al tamaño de pantalla ---------- */
+function escalar(){const s=Math.min(innerWidth/1920,innerHeight/1080);esc.style.transform=`translate(-50%,-50%) scale(${s})`;}
+addEventListener("resize",escalar); escalar();
+
+/* ---------- Ajusta el título si es largo (ej. CAPACITACIÓN) ---------- */
+const ajustar=(sel,base,max)=>document.querySelectorAll(sel).forEach(h=>{
+  let f=base; h.style.fontSize=f+"px";
+  while(h.scrollWidth>max&&f>40){f-=2;h.style.fontSize=f+"px";}
+});
+document.fonts.ready.then(()=>{ ajustar(".titulo h1",90,1100); ajustar(".car-fila h1",170,1300); });
+
+/* ---------- Navegación: cada pestaña muestra sus tres premiadas a la vez ---------- */
+const diapos=[...document.querySelectorAll(".diapo")];
+let actual=-1;
+function ir(n){
+  if(n<0||n>=diapos.length||n===actual) return;
+  diapos.forEach((d,i)=>{
+    d.classList.toggle("activa",i===n);
+    d.querySelectorAll("video").forEach(v=>{ if(i===n){v.currentTime=0;v.play().catch(()=>{});} else v.pause(); });
+  });
+  actual=n;
+}
+const siguiente=()=>ir(actual+1), anterior=()=>ir(actual-1);
+addEventListener("keydown",e=>{
+  const k=e.key;
+  if(["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(k)){e.preventDefault();siguiente();}
+  else if(["ArrowLeft","PageUp","ArrowUp","Backspace"].includes(k)){e.preventDefault();anterior();}
+  else if(/^[1-3]$/.test(k)) ir(DIAPOS.findIndex(d=>d.tipo==="caratula"&&d.categoria===CATEGORIAS[+k-1].nombre));
+  else if(k==="Home") ir(0);
+  else if(k==="End") ir(diapos.length-1);
+  else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(k==="s"||k==="S") document.body.classList.toggle("sin-siluetas");
+  else if(k==="h"||k==="H") document.getElementById("ayuda").classList.toggle("oculta");
+});
+addEventListener("click",siguiente);
+addEventListener("contextmenu",e=>{e.preventDefault();anterior();});
+let tCursor; addEventListener("mousemove",()=>{document.body.classList.remove("oculto-cursor");clearTimeout(tCursor);tCursor=setTimeout(()=>document.body.classList.add("oculto-cursor"),2500);});
+setTimeout(()=>document.getElementById("ayuda").classList.add("oculta"),8000);
+ir(0);
+
+/* ---------- Luciérnagas doradas ---------- */
+const cv=document.getElementById("particulas"), cx=cv.getContext("2d");
+let PART=[];
+function tam(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;}
+addEventListener("resize",tam); tam();
+for(let i=0;i<70;i++) PART.push({x:Math.random(),y:Math.random(),r:.6+Math.random()*1.8,vy:.00008+Math.random()*.00025,
+  vx:(Math.random()-.5)*.00012,f:Math.random()*6.28,fs:.01+Math.random()*.03});
+(function loop(){
+  cx.clearRect(0,0,cv.width,cv.height); const s=devicePixelRatio;
+  for(const p of PART){
+    p.y-=p.vy; p.x+=p.vx+Math.sin(p.f*.5)*.00008; p.f+=p.fs;
+    if(p.y<-.02){p.y=1.02;p.x=Math.random();}
+    const a=.25+.75*Math.max(0,Math.sin(p.f)), X=p.x*cv.width, Y=p.y*cv.height, R=p.r*s;
+    const g=cx.createRadialGradient(X,Y,0,X,Y,R*7);
+    g.addColorStop(0,`rgba(255,226,140,${.9*a})`);g.addColorStop(.25,`rgba(255,190,70,${.35*a})`);g.addColorStop(1,"rgba(255,170,40,0)");
+    cx.fillStyle=g;cx.beginPath();cx.arc(X,Y,R*7,0,6.283);cx.fill();
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
