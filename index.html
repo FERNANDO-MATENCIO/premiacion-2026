@@ -314,7 +314,7 @@ DIAPOS.forEach((d,i)=>{
         <div class="car-frase">${d.frase}</div>
       </div>
       <div class="guardianes">${ANIMALES.map((a,k)=>`<div class="guardian" style="animation-delay:${1.3+k*.12}s"><div>
-        <video src="${a}" muted loop playsinline preload="auto"></video></div></div>`).join("")}</div>`;
+        <video data-src="${a}" muted loop playsinline preload="auto"></video></div></div>`).join("")}</div>`;
     esc.appendChild(el); return;
   }
   el.innerHTML=`
@@ -326,7 +326,7 @@ DIAPOS.forEach((d,i)=>{
     <div class="tarjetas">${d.premiados.map(p=>`
       <div class="premiado">
         <div class="marco"><div class="medalla"><span>${d.puesto}</span></div><div class="medio">
-          <video src="${p.animal}" muted loop playsinline preload="auto"></video>
+          <video data-src="${p.animal}" muted loop playsinline preload="auto"></video>
           ${(p.foto||FOTO_PLANTILLA)?`<img class="foto" src="${p.foto||FOTO_PLANTILLA}" alt="" onerror="this.outerHTML=SILUETA">`:SILUETA}
           <div class="destello"></div>
         </div>${MOSTRAR_REGION?`<div class="region">${p.region}</div>`:""}</div>
@@ -350,9 +350,15 @@ document.fonts.ready.then(()=>{ ajustar(".titulo h1",90,1100); ajustar(".car-fil
 /* ---------- Navegación: cada pestaña muestra sus tres premiadas a la vez ---------- */
 const diapos=[...document.querySelectorAll(".diapo")];
 let actual=-1;
+// Los videos se cargan solo para la diapositiva actual y la siguiente (por internet, cargar ~60 a la vez satura la descarga).
+function cargar(n){
+  if(!diapos[n]) return;
+  diapos[n].querySelectorAll("video[data-src]").forEach(v=>{ v.src=v.dataset.src; v.removeAttribute("data-src"); });
+}
 function ir(n){
   if(n<0||n>=diapos.length||n===actual) return;
   diapos.forEach((d,i)=>{
+    if(i===n){ cargar(n); cargar(n+1); }
     d.classList.toggle("activa",i===n);
     d.querySelectorAll("video").forEach(v=>{ if(i===n){v.currentTime=0;v.play().catch(()=>{});} else v.pause(); });
   });
