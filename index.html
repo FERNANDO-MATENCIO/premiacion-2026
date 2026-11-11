@@ -9,6 +9,8 @@
 @font-face{font-family:'Cinzel';font-weight:400 900;src:url(fuentes/cinzel.woff2) format('woff2');font-display:block}
 @font-face{font-family:'Oswald';font-weight:200 700;src:url(fuentes/oswald.woff2) format('woff2');font-display:block}
 @font-face{font-family:'Montserrat';font-weight:100 900;src:url(fuentes/montserrat.woff2) format('woff2');font-display:block}
+@font-face{font-family:'Playfair';font-style:italic;font-weight:500;src:url(fuentes/playfair-italic.woff2) format('woff2');font-display:block}
+@font-face{font-family:'Rajdhani';font-weight:700;src:url(fuentes/rajdhani-700.woff2) format('woff2');font-display:block}
 
 :root{
   --oro-texto: linear-gradient(180deg,#fff7d1 0%,#f8dc86 20%,#e0ae46 42%,#a46b17 54%,#d9a948 70%,#fbe7a4 88%,#fff3c4 100%);
@@ -21,6 +23,7 @@
   --borde-osc: rgba(80,50,10,.8); --borde-int: rgba(60,35,5,.9);
   --linea: #f3d07a; --linea2: #fff1bd; --destello: rgba(255,240,200,.85);
   --l1:#fff4c4; --l2:#ecc160; --l3:#a36a16; --l4:#f3d27d; --l-borde:#5a3a0a;
+  --c1:255,214,120;
 }
 /* ---------- Tema PLATA (segundo puesto) ---------- */
 .plata{
@@ -33,6 +36,7 @@
   --borde-osc: rgba(40,46,54,.85); --borde-int: rgba(30,35,42,.9);
   --linea: #d3dae2; --linea2: #ffffff; --destello: rgba(235,242,255,.85);
   --l1:#ffffff; --l2:#cfd5dc; --l3:#6c7581; --l4:#e6eaee; --l-borde:#39404a;
+  --c1:215,228,245;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;overflow:hidden;background:#04140b;cursor:default}
@@ -136,33 +140,43 @@ body.sin-siluetas .silueta{opacity:0}
 .car-orn u{width:260px;height:2px;background:linear-gradient(90deg,transparent,var(--linea))}
 .car-orn u.der{transform:scaleX(-1)}
 .car-orn i{width:12px;height:12px;transform:rotate(45deg);background:var(--oro-borde)}
-.car-frase{margin-top:20px;font:500 34px/1.3 'Montserrat',sans-serif;letter-spacing:1px;color:#f7ecd2;text-align:center;
+.car-frase{margin-top:16px;font:italic 500 40px/1.3 'Playfair',serif;letter-spacing:.3px;color:#f7ecd2;text-align:center;
   text-shadow:0 2px 12px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.8)}
-/* ---------- Podio de premios (carátulas) ---------- */
-.podio{position:absolute;bottom:26px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:150px}
+/* ---------- Podio de premios (carátulas): aro de luz + rayos giratorios ---------- */
+.podio{position:absolute;bottom:30px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:170px}
 .premio{display:flex;flex-direction:column;align-items:center;opacity:0}
-.p-caja{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center}
-.p1 .p-caja{width:420px;height:330px}
-.p2 .p-caja{width:290px;height:225px}
-.p-caja::before{content:"";position:absolute;left:-25%;right:-25%;bottom:-8%;height:115%;border-radius:50%;z-index:-1;
-  background:radial-gradient(ellipse at 50% 75%,var(--brillo) 0%,transparent 62%);filter:blur(8px)}
-.p-caja img{position:relative;max-width:100%;max-height:100%;object-fit:contain;
-  filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))}
-.pedestal{position:relative;margin-top:-3px;background:var(--oro-placa);
-  box-shadow:0 0 0 1px var(--borde-osc),0 18px 30px rgba(0,0,0,.75),0 0 30px var(--brillo2);
-  display:flex;align-items:center;justify-content:center;border-radius:4px}
-.pedestal::before{content:"";position:absolute;left:0;right:0;top:-14px;height:28px;border-radius:50%;
-  background:var(--oro-borde);box-shadow:inset 0 -2px 4px rgba(0,0,0,.35)}
-.pedestal::after{content:"";position:absolute;inset:0;border-radius:4px;
-  background:linear-gradient(90deg,rgba(0,0,0,.28),transparent 25%,rgba(255,255,255,.35) 50%,transparent 75%,rgba(0,0,0,.28))}
-.pedestal span{position:relative;z-index:1;font:900 52px/1 'Cinzel',serif;color:var(--tinta);text-shadow:0 1px 0 var(--tinta-luz);margin-top:10px}
-.p1 .pedestal{width:340px;height:92px}
-.p2 .pedestal{width:320px;height:60px}
-.p2 .pedestal span{font-size:40px}
-.p-puesto{margin-top:16px;font:800 19px/1 'Montserrat',sans-serif;letter-spacing:7px;padding-left:7px}
-.p-nombre{margin-top:8px;font:600 40px/1 'Oswald',sans-serif;letter-spacing:2px;color:#fff;text-transform:uppercase;
-  text-shadow:0 2px 10px rgba(0,0,0,.9)}
-.p-sku{margin-top:6px;font:600 21px/1 'Montserrat',sans-serif;letter-spacing:3px;color:#e9e0c8;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.p-zona{position:relative;display:flex;align-items:flex-end;justify-content:center}
+.p1 .p-zona{width:440px;height:380px}
+.p2 .p-zona{width:320px;height:210px}
+.p-rayos{position:absolute;left:50%;top:50%;width:820px;height:820px;transform:translate(-50%,-50%);pointer-events:none;
+  background:repeating-conic-gradient(rgba(var(--c1),.22) 0 6deg,transparent 6deg 18deg);
+  -webkit-mask:radial-gradient(circle,#000 0%,transparent 52%);mask:radial-gradient(circle,#000 0%,transparent 52%);
+  animation:girar 50s linear infinite}
+.p2 .p-rayos{width:520px;height:520px;animation-direction:reverse}
+@keyframes girar{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.p-disco{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);width:125%;height:70px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(var(--c1),.95) 0%,rgba(var(--c1),.45) 35%,rgba(var(--c1),0) 70%)}
+.p-aro{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:105%;height:46px;border-radius:50%;
+  border:3px solid rgba(var(--c1),.95);box-shadow:0 0 18px rgba(var(--c1),.9),inset 0 0 14px rgba(var(--c1),.6)}
+/* producto: flota suave + reflejo en el piso + brillo que recorre solo su silueta */
+.p-prod{position:relative;z-index:2;animation:flotar 6s ease-in-out infinite;
+  -webkit-box-reflect:below 2px linear-gradient(transparent 72%,rgba(255,255,255,.22))}
+.p-prod img{display:block;filter:drop-shadow(0 0 22px rgba(var(--c1),.55)) drop-shadow(0 18px 20px rgba(0,0,0,.6))}
+.p1 .p-prod img{height:370px}
+.p2 .p-prod img{width:290px}
+.p-prod .sheen{position:absolute;inset:0;-webkit-mask-size:100% 100%;mask-size:100% 100%;mix-blend-mode:screen;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);background-size:300% 100%;
+  animation:brilloProd 4.5s ease-in-out infinite}
+.p2 .p-prod .sheen{animation-delay:1.2s}
+@keyframes brilloProd{0%,55%{background-position:130% 0}100%{background-position:-30% 0}}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.p-txt{margin-top:46px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.p-puesto{font:800 20px/1 'Montserrat',sans-serif;letter-spacing:8px;padding-left:8px}
+.p-nombre{font:600 50px/1 'Oswald',sans-serif;letter-spacing:2px;color:#fff;text-transform:uppercase;text-shadow:0 2px 12px #000}
+.p2 .p-nombre{font-size:38px}
+.p-sku{font:700 28px/1 'Rajdhani',sans-serif;letter-spacing:5px;padding:8px 22px 6px 27px;border-radius:40px;color:#fff6dc;
+  border:2px solid rgba(var(--c1),.9);background:rgba(0,0,0,.5);box-shadow:0 0 16px rgba(var(--c1),.45)}
+.p2 .p-sku{font-size:23px}
 .diapo.activa .premio.p2{animation:sube 1s 1.3s cubic-bezier(.2,.8,.2,1) both}
 .diapo.activa .premio.p1{animation:sube 1s 1.7s cubic-bezier(.2,.8,.2,1) both}
 .guardianes{position:absolute;bottom:64px;left:0;right:0;display:flex;justify-content:center;gap:34px}
@@ -354,11 +368,10 @@ DIAPOS.forEach((d,i)=>{
       </div>
       ${d.premios?`<div class="podio">${[2,1].map(n=>{const q=d.premios[n];return `
         <div class="premio p${n}${n===2?" plata":""}">
-          <div class="p-caja"><img src="${q.img}" alt="${q.nombre}"></div>
-          <div class="pedestal"><span>${n}</span></div>
-          <div class="p-puesto texto-metal">${n===1?"PRIMER PUESTO":"SEGUNDO PUESTO"}</div>
-          <div class="p-nombre">${q.nombre}</div>
-          <div class="p-sku">${q.sku}</div>
+          <div class="p-zona"><div class="p-rayos"></div><div class="p-disco"></div><div class="p-aro"></div>
+            <div class="p-prod"><img src="${q.img}" alt="${q.nombre}"><div class="sheen" style="-webkit-mask-image:url(${q.img});mask-image:url(${q.img})"></div></div></div>
+          <div class="p-txt"><div class="p-puesto texto-metal">${n===1?"PRIMER PUESTO":"SEGUNDO PUESTO"}</div>
+            <div class="p-nombre">${q.nombre}</div><div class="p-sku">${q.sku}</div></div>
         </div>`}).join("")}</div>`:""}`;
     esc.appendChild(el); return;
   }
