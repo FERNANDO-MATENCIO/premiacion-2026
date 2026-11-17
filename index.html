@@ -234,6 +234,18 @@ body.sin-siluetas .silueta{opacity:0}
   background:rgba(0,0,0,.45);padding:8px 12px;border-radius:6px;transition:opacity .6s}
 #ayuda.oculta{opacity:0;pointer-events:none}
 #ayuda b{color:#f3d07a}
+
+/* ---------- 6 premiados por diapositiva (3 arriba + 3 abajo, opción C) ---------- */
+.seis .titulo{top:26px}
+.seis .titulo h1{font-size:62px!important}
+.seis .titulo .laurel{width:70px;height:106px}
+.seis .logo{transform:scale(.75);transform-origin:top right}
+.seis .puesto{top:128px}
+.grupos{position:absolute;top:172px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:40px}
+.seis .tarjetas{position:static;gap:120px;zoom:.645}
+.diapo.activa.seis .premiado{transition-delay:calc(.6s + var(--k) * .12s)}
+.diapo.activa.seis .premiado .placa{transition-delay:calc(1.2s + var(--k) * .12s)}
+.diapo.activa.seis .premiado .tienda{transition-delay:calc(1.4s + var(--k) * .12s)}
 </style>
 </head>
 <body>
@@ -243,7 +255,7 @@ body.sin-siluetas .silueta{opacity:0}
 <canvas id="particulas"></canvas>
 <div id="escenario"></div>
 <div id="ayuda">
-  <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Ventas / Flooring / Capacitación &nbsp;·&nbsp;
+  <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Flooring / Ventas / Capacitación &nbsp;·&nbsp;
   <b>F</b> pantalla completa &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
 </div>
 
@@ -262,7 +274,7 @@ const REGIONES = {
   CENTRO_SUR_CHICO:  { animal: "videos/JAGUAR_loop.mp4", region: "Centro - Sur Chico" },
 };
 const MOSTRAR_REGION = false;                // etiqueta con la región sobre cada tarjeta
-const FOTO_PLANTILLA = "fotos/PROMOTOR.png"; // se usa mientras una premiada no tenga foto propia; si el archivo no existe, sale una silueta
+const FOTO_PLANTILLA = null;               // se usa mientras una premiada no tenga foto propia; si el archivo no existe, sale una silueta
 
 const P = (region, nombre, tienda, foto) => ({ ...REGIONES[region], nombre, tienda, foto });
 
@@ -285,35 +297,36 @@ const CATEGORIAS = [
 const ZONAS = ["LIMA", "PROVINCIA"];
 const ORDEN_PUESTOS = [1, 2];   // primero se muestra el 1er puesto (oro), luego el 2do (plata)
 
-/* PREMIADOS[categoría][zona][puesto] = 3 premiadas (una por región, en este orden).
+/* PREMIADOS[categoría][zona][puesto] = 3 premiados (una por región, en este orden). Datos: 1_MATERIAL_FERNANDO/DATOS/GANADORES Y VISITAS A EVENTO FIN DE AÑO.xlsx; 3er dato = CIUDAD.
    Ejemplo con foto propia: P("LIMA_NORTE", "Dayhana Mendoza", "Saga Bellavista", "fotos/dayhana.png") */
 const PREMIADOS = {
   "VENTAS": {
-    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
-                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
-    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
-                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+    LIMA:      { 1: [P("LIMA_NORTE","Juan Luis Castrillon","Lima"), P("LIMA_SUR","Yoli Salvador","Lima"), P("LIMA_CHIMBOTE","Karol Torres","Lima")],
+                 2: [P("LIMA_NORTE","Maria Fiorella Vela","Lima"), P("LIMA_SUR","Ruby Cajas","Lima"), P("LIMA_CHIMBOTE","Carmen Padilla","Lima")] },
+    PROVINCIA: { 1: [P("NORTE","Jessica Villalobos","Jaen"), P("ORIENTE_SUR","Roxana Condori","Arequipa"), P("CENTRO_SUR_CHICO","Elvira Yllu","Ica")],
+                 2: [P("NORTE","Daysi Cordova","Chiclayo"), P("ORIENTE_SUR","Karin Del Aguila","Iquitos"), P("CENTRO_SUR_CHICO","Daniela Fernández","Ica")] },
   },
   "FLOORING": {
-    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
-                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
-    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
-                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+    LIMA:      { 1: [P("LIMA_NORTE","Dayhana Mendoza","Callao"), P("LIMA_SUR","Gian Carlo Miñan","Lima"), P("LIMA_CHIMBOTE","Katherine Navarro","Lima")],
+                 2: [P("LIMA_NORTE","Issa Vidarte","Lima"), P("LIMA_SUR","Claudia Loayza","Lima"), P("LIMA_CHIMBOTE","Carlos Barboza","Lima")] },
+    PROVINCIA: { 1: [P("NORTE","Abby Mogollon","Tumbes"), P("ORIENTE_SUR","Xena Majipo","Pucallpa"), P("CENTRO_SUR_CHICO","Dalia Bayona","Huacho")],
+                 2: [P("NORTE","Maria Eugenia Ledesma","Piura"), P("ORIENTE_SUR","Sergio Callo","Tacna"), P("CENTRO_SUR_CHICO","Milagros Alvarez","Chincha")] },
   },
   "CAPACITACIÓN": {
-    LIMA:      { 1: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")],
-                 2: [P("LIMA_NORTE","Nombre Apellido","Tienda"), P("LIMA_SUR","Nombre Apellido","Tienda"), P("LIMA_CHIMBOTE","Nombre Apellido","Tienda")] },
-    PROVINCIA: { 1: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")],
-                 2: [P("NORTE","Nombre Apellido","Tienda"), P("ORIENTE_SUR","Nombre Apellido","Tienda"), P("CENTRO_SUR_CHICO","Nombre Apellido","Tienda")] },
+    LIMA:      { 1: [P("LIMA_NORTE","Alicia Perez","Lima"), P("LIMA_SUR","Ruby Cajas","Lima"), P("LIMA_CHIMBOTE","Karla Castillo","Lima")],
+                 2: [P("LIMA_NORTE","Juan Miguel Ccaccya","Lima"), P("LIMA_SUR","Yoli Salvador","Lima"), P("LIMA_CHIMBOTE","Vania Pinto","Lima")] },
+    PROVINCIA: { 1: [P("NORTE","Evelyn Laines","Chiclayo"), P("ORIENTE_SUR","Karin Del Aguila","Iquitos"), P("CENTRO_SUR_CHICO","Daniela Fernández","Ica")],
+                 2: [P("NORTE","Jackeline Gonzales","Chiclayo"), P("ORIENTE_SUR","Cristopher Chavez","Arequipa"), P("CENTRO_SUR_CHICO","Maria Azucena Pucuhuayla","Huancayo")] },
   },
 };
 
-// Secuencia: carátula → Lima 1ro → Lima 2do → Provincia 1ro → Provincia 2do, por cada categoría (FLOORING, VENTAS, CAPACITACIÓN).
+// 6 POR DIAPO — Secuencia: carátula → 1er puesto (6: Lima arriba, Provincia abajo) → 2do puesto (6), por categoría (FLOORING, VENTAS, CAPACITACIÓN).
 const DIAPOS = [];
 CATEGORIAS.forEach(c => {
   DIAPOS.push({ tipo: "caratula", categoria: c.nombre, frase: c.frase, premios: c.premios });
-  ZONAS.forEach(z => ORDEN_PUESTOS.forEach(p =>
-    DIAPOS.push({ tipo: "premios", categoria: c.nombre, zona: z, puesto: p, premiados: PREMIADOS[c.nombre][z][p] })));
+  ORDEN_PUESTOS.forEach(p =>
+    DIAPOS.push({ tipo: "premios", categoria: c.nombre, puesto: p,
+                  grupos: ZONAS.map(z => ({ zona: z, premiados: PREMIADOS[c.nombre][z][p] })) }));
 });
 // Diapositiva final
 DIAPOS.push({ tipo: "cierre", titulo: "¡Felicitaciones", linea2: "a todos nuestros premiados!",
@@ -375,14 +388,9 @@ DIAPOS.forEach((d,i)=>{
         </div>`}).join("")}</div>`:""}`;
     esc.appendChild(el); return;
   }
-  el.innerHTML=`
-    <img class="logo" src="${LOGO}" alt="Indurama">
-    <div class="titulo">${laurel("lg"+i+"a","izq")}
-      <h1>PREMIACIÓN ${d.categoria}</h1>${laurel("lg"+i+"b","der")}</div>
-    <div class="zona"><div class="linea izq"></div><div class="placa"><span>${d.zona}</span></div><div class="linea der"></div></div>
-    <div class="puesto"><u></u><i></i><b class="texto-metal">${d.puesto===1?"PRIMER PUESTO":"SEGUNDO PUESTO"}</b><i></i><u class="der"></u></div>
-    <div class="tarjetas">${d.premiados.map(p=>`
-      <div class="premiado">
+  el.className+=" seis";
+  const tarjeta=(p,k)=>`
+      <div class="premiado" style="--k:${k}">
         <div class="marco"><div class="medalla"><span>${d.puesto}</span></div><div class="medio">
           <video data-src="${p.animal}" muted loop playsinline preload="auto"></video>
           ${(p.foto||FOTO_PLANTILLA)?`<img class="foto" src="${p.foto||FOTO_PLANTILLA}" alt="" onerror="this.outerHTML=SILUETA">`:SILUETA}
@@ -390,7 +398,14 @@ DIAPOS.forEach((d,i)=>{
         </div>${MOSTRAR_REGION?`<div class="region">${p.region}</div>`:""}</div>
         <div class="placa"><span>${p.nombre.toUpperCase()}</span></div>
         <div class="tienda">${p.tienda}</div>
-      </div>`).join("")}</div>`;
+      </div>`;
+  el.innerHTML=`
+    <img class="logo" src="${LOGO}" alt="Indurama">
+    <div class="titulo">${laurel("lg"+i+"a","izq")}
+      <h1>PREMIACIÓN ${d.categoria}</h1>${laurel("lg"+i+"b","der")}</div>
+    <div class="puesto"><u></u><i></i><b class="texto-metal">${d.puesto===1?"PRIMER PUESTO":"SEGUNDO PUESTO"}</b><i></i><u class="der"></u></div>
+    <div class="grupos">${d.grupos.map((g,gi)=>`
+      <div class="tarjetas">${g.premiados.map((p,k)=>tarjeta(p,gi*3+k)).join("")}</div>`).join("")}</div>`;
   esc.appendChild(el);
 });
 
@@ -403,7 +418,9 @@ const ajustar=(sel,base,max)=>document.querySelectorAll(sel).forEach(h=>{
   let f=base; h.style.fontSize=f+"px";
   while(h.scrollWidth>max&&f>40){f-=2;h.style.fontSize=f+"px";}
 });
-document.fonts.ready.then(()=>{ ajustar(".titulo h1",90,1100); ajustar(".caratula:not(.cierre) .car-fila h1",150,1080); ajustar(".cierre .car-fila h1",170,1300); });
+/* nombres largos: achica la letra hasta que quepa en la placa */
+const ajustarPlacas=()=>document.querySelectorAll('.premiado .placa span').forEach(e=>{ let f=44; e.style.fontSize=f+'px'; while(e.scrollWidth>e.clientWidth+1&&f>24){f--;e.style.fontSize=f+'px';} });
+document.fonts.ready.then(()=>{ ajustarPlacas(); ajustar(".titulo h1",90,1100); ajustar(".caratula:not(.cierre) .car-fila h1",150,1080); ajustar(".cierre .car-fila h1",170,1300); });
 
 /* ---------- Navegación: cada pestaña muestra sus tres premiadas a la vez ---------- */
 const diapos=[...document.querySelectorAll(".diapo")];
