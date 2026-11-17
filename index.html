@@ -177,8 +177,8 @@ body.sin-siluetas .silueta{opacity:0}
 .p-sku{font:700 28px/1 'Rajdhani',sans-serif;letter-spacing:5px;padding:8px 22px 6px 27px;border-radius:40px;color:#fff6dc;
   border:2px solid rgba(var(--c1),.9);background:rgba(0,0,0,.5);box-shadow:0 0 16px rgba(var(--c1),.45)}
 .p2 .p-sku{font-size:23px}
-.diapo.activa .premio.p2{animation:sube 1s 1.3s cubic-bezier(.2,.8,.2,1) both}
-.diapo.activa .premio.p1{animation:sube 1s 1.7s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .premio.p1{animation:sube 1s 1.3s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa .premio.p2{animation:sube 1s 1.7s cubic-bezier(.2,.8,.2,1) both}
 .guardianes{position:absolute;bottom:64px;left:0;right:0;display:flex;justify-content:center;gap:34px}
 .guardian{width:124px;height:124px;border-radius:50%;padding:5px;background:var(--oro-borde);
   box-shadow:0 0 0 1px var(--borde-osc),0 8px 20px rgba(0,0,0,.7),0 0 20px var(--brillo2)}
@@ -275,15 +275,15 @@ const PREMIO = {
 };
 // Carátulas: una por categoría, con su frase y sus premios.
 const CATEGORIAS = [
-  { nombre: "VENTAS",       frase: "Reconocimiento al mejor desempeño en ventas 2026",
-    premios: { 1: PREMIO.lavadora,      2: PREMIO.microondas } },
   { nombre: "FLOORING",     frase: "Reconocimiento a la excelencia en exhibición y punto de venta 2026",
     premios: { 1: PREMIO.refrigeradora, 2: PREMIO.microondas } },
+  { nombre: "VENTAS",       frase: "Reconocimiento al mejor desempeño en ventas 2026",
+    premios: { 1: PREMIO.lavadora,      2: PREMIO.microondas } },
   { nombre: "CAPACITACIÓN", frase: "Reconocimiento al compromiso con el aprendizaje 2026",
     premios: { 1: PREMIO.cocina,        2: PREMIO.microondas } },
 ];
 const ZONAS = ["LIMA", "PROVINCIA"];
-const ORDEN_PUESTOS = [2, 1];   // primero se muestra el 2do puesto (plata), luego el 1ro (oro)
+const ORDEN_PUESTOS = [1, 2];   // primero se muestra el 1er puesto (oro), luego el 2do (plata)
 
 /* PREMIADOS[categoría][zona][puesto] = 3 premiadas (una por región, en este orden).
    Ejemplo con foto propia: P("LIMA_NORTE", "Dayhana Mendoza", "Saga Bellavista", "fotos/dayhana.png") */
@@ -308,7 +308,7 @@ const PREMIADOS = {
   },
 };
 
-// Secuencia: carátula → Lima 2do → Lima 1ro → Provincia 2do → Provincia 1ro, por cada categoría.
+// Secuencia: carátula → Lima 1ro → Lima 2do → Provincia 1ro → Provincia 2do, por cada categoría (FLOORING, VENTAS, CAPACITACIÓN).
 const DIAPOS = [];
 CATEGORIAS.forEach(c => {
   DIAPOS.push({ tipo: "caratula", categoria: c.nombre, frase: c.frase, premios: c.premios });
@@ -366,7 +366,7 @@ DIAPOS.forEach((d,i)=>{
         <div class="car-orn"><u></u><i></i><u class="der"></u></div>
         <div class="car-frase">${d.frase}</div>
       </div>
-      ${d.premios?`<div class="podio">${[2,1].map(n=>{const q=d.premios[n];return `
+      ${d.premios?`<div class="podio">${[1,2].map(n=>{const q=d.premios[n];return `
         <div class="premio p${n}${n===2?" plata":""}">
           <div class="p-zona"><div class="p-rayos"></div><div class="p-disco"></div><div class="p-aro"></div>
             <div class="p-prod"><img src="${q.img}" alt="${q.nombre}"><div class="sheen" style="-webkit-mask-image:url(${q.img});mask-image:url(${q.img})"></div></div></div>
