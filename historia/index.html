@@ -72,28 +72,28 @@ body[data-tema=jun] #c-jun, body[data-tema=com] #c-com{opacity:1}
 /* clímax: escalones con porcentajes */
 .es-calido{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 82% 12%,rgba(255,214,130,.3),transparent 55%),radial-gradient(ellipse at 50% 55%,transparent 30%,rgba(10,10,6,.8) 100%),linear-gradient(180deg,rgba(40,34,14,.15),rgba(20,18,8,.5))}
 #esc-cl{position:absolute;inset:0}
-.esc{position:absolute;bottom:78px;width:480px;text-align:center;border-radius:6px 6px 0 0;
+.esc{position:absolute;bottom:78px;width:380px;text-align:center;border-radius:6px 6px 0 0;
   background:linear-gradient(180deg,#6b5a3a 0%,#3b3020 12%,#1d170e 100%);box-shadow:inset 0 3px 0 rgba(255,230,170,.35),0 -10px 40px rgba(0,0,0,.6);
   transform:translateY(105%);transition:transform 1.5s cubic-bezier(.25,.8,.25,1),box-shadow 1.2s}
 .esc.sube{transform:none}
-.esc .a{font:700 40px Cinzel;letter-spacing:12px;padding-left:12px;color:#ffe9a8;margin-top:26px}
-.esc .p{font:700 96px/1 Cinzel;color:#ffe9a8;margin-top:8px;text-shadow:0 0 30px rgba(255,200,110,.35)}
+.esc .a{font:700 36px Cinzel;letter-spacing:10px;padding-left:12px;color:#ffe9a8;margin-top:26px}
+.esc .p{font:700 84px/1 Cinzel;color:#ffe9a8;margin-top:8px;text-shadow:0 0 30px rgba(255,200,110,.35)}
 .esc .p small{font-size:52px;margin-left:4px}
 .esc .l{font:700 24px Cinzel;letter-spacing:10px;padding-left:10px;color:#e8d3a0;margin-top:10px;opacity:0;transition:opacity .6s .5s}
 .esc.listo .l{opacity:1}
 .esc.on{box-shadow:inset 0 3px 0 #ffe7a0,0 0 60px rgba(255,200,90,.45)}
-#esc-cl #es2:not(.revela) .p small{display:none}
+#esc-cl #es3:not(.revela) .p small{display:none}
 #es-logo{position:absolute;width:210px;opacity:0;filter:drop-shadow(0 0 22px rgba(255,220,150,.7));
   transition:left 1.6s cubic-bezier(.45,0,.25,1),bottom 1.6s cubic-bezier(.45,0,.25,1),opacity .9s,width 1.6s cubic-bezier(.45,0,.25,1)}
 #es-brillo{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 78% 40%,rgba(255,226,160,.55),rgba(255,200,110,.18) 35%,transparent 65%)}
 @keyframes resplandor{0%{opacity:0}35%{opacity:.55}100%{opacity:0}}
 .es-rev{opacity:0;transition:opacity .9s}
 .d.revelado .es-rev{opacity:1}
-.es-rayos{position:absolute;left:1500px;top:330px;width:3000px;height:3000px;margin:-1500px 0 0 -1500px;
+.es-rayos{position:absolute;left:1610px;top:330px;width:3000px;height:3000px;margin:-1500px 0 0 -1500px;
   background:repeating-conic-gradient(rgba(255,226,150,.13) 0 2deg,transparent 2deg 9deg);-webkit-mask:radial-gradient(circle,#000,transparent 45%);mask:radial-gradient(circle,#000,transparent 45%)}
 .d.revelado .es-rayos{animation:girar2 40s linear infinite}
 @keyframes girar2{to{transform:rotate(360deg)}}
-.es-estallido{position:absolute;left:1500px;top:330px;width:1400px;height:1400px;margin:-700px 0 0 -700px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,200,.6),rgba(255,200,100,.2) 25%,transparent 60%)}
+.es-estallido{position:absolute;left:1610px;top:330px;width:1400px;height:1400px;margin:-700px 0 0 -700px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,200,.6),rgba(255,200,100,.2) 25%,transparent 60%)}
 .es-titulo{position:absolute;left:170px;top:170px;transform:scale(.85);transform-origin:left top;transition:opacity .9s .2s,transform 1.4s .2s cubic-bezier(.2,.7,.2,1)}
 .d.revelado .es-titulo{transform:none}
 .es-oro{font:400 132px/1.05 Fell;letter-spacing:8px;background:var(--oro,linear-gradient(180deg,#fff7d1,#f8dc86 20%,#e0ae46 42%,#a46b17 54%,#d9a948 70%,#fbe7a4 88%,#fff3c4));
@@ -535,15 +535,16 @@ body.guia #num{display:block}
 
   <!-- ===================== FINAL ===================== -->
   <!-- 16 · CLÍMAX: ESCALONES CON PORCENTAJES (2024 → 2026) -->
-  <section class="d" data-tema="negro" data-f="16" data-nota="Escalones 2024 · 2025 · 2026 con la participación; el logo sube y en 2026 se revela MARCA N.º 1. Porcentajes pendientes de validar.">
+  <section class="d" data-tema="negro" data-f="16" data-nota="Escalones 2023 · 2024 · 2025 · 2026 con la participación; el logo sube y en 2026 se revela MARCA N.º 1. Porcentajes pendientes de validar.">
     <div class="bg"><video class="kb" src="media/jungla_portada_loop.mp4" muted loop playsinline style="filter:sepia(.2) saturate(1.05) contrast(1.05) brightness(.62);--s0:1.04;--s1:1.1"></video><div class="es-calido"></div></div>
     <div class="vineta"></div>
     <div id="esc-cl">
       <div class="es-rev es-rayos"></div><div class="es-rev es-estallido"></div>
       <div class="centro" style="top:110px"><div class="j-etq an" style="--i:0">— PARTICIPACIÓN INDURAMA —</div></div>
-      <div class="esc" id="es0" style="left:180px;height:300px"><div class="a">2024</div><div class="p"><span class="cnt">0,0</span><small>%</small></div><div class="l">3.º LUGAR</div></div>
-      <div class="esc" id="es1" style="left:720px;height:440px"><div class="a">2025</div><div class="p"><span class="cnt">0,0</span><small>%</small></div><div class="l">2.º LUGAR</div></div>
-      <div class="esc" id="es2" style="left:1260px;height:580px"><div class="a">2026</div><div class="p"><span class="cnt">?</span><small>%</small></div><div class="l">1.º LUGAR</div></div>
+      <div class="esc" id="es0" style="left:130px;height:240px"><div class="a">2023</div><div class="p"><span class="cnt">0,0</span><small>%</small></div><div class="l">3.º LUGAR</div></div>
+      <div class="esc" id="es1" style="left:560px;height:350px"><div class="a">2024</div><div class="p"><span class="cnt">0,0</span><small>%</small></div><div class="l">3.º LUGAR</div></div>
+      <div class="esc" id="es2" style="left:990px;height:460px"><div class="a">2025</div><div class="p"><span class="cnt">0,0</span><small>%</small></div><div class="l">2.º LUGAR</div></div>
+      <div class="esc" id="es3" style="left:1420px;height:580px"><div class="a">2026</div><div class="p"><span class="cnt">?</span><small>%</small></div><div class="l">1.º LUGAR</div></div>
       <div id="es-brillo"></div>
       <img id="es-logo" src="media/indurama-logo-blanco.png" alt="Indurama">
       <div class="es-rev es-titulo"><span class="es-oro">MARCA<br>N.º <span class="es-num">1</span></span></div>
@@ -558,6 +559,7 @@ body.guia #num{display:block}
     <div class="centro" style="top:330px">
       <div class="t-oro an" style="--i:8;font-size:230px;letter-spacing:30px">2027</div>
       <div class="lema an" style="--i:12;font-size:60px;margin-top:40px;color:#f8e3a8">La historia continúa…</div>
+      <div class="lema an" style="--i:17;font-size:60px;margin-top:14px;color:#f8e3a8">El liderazgo continúa.</div>
     </div>
     <img class="an" src="media/indurama-logo-blanco.png" style="--i:15;position:absolute;left:50%;bottom:110px;width:200px;margin-left:-100px" alt="Indurama">
   </section>
@@ -667,20 +669,20 @@ function lluvia(d){ d.classList.remove("lleno"); const cont=d.querySelector("#ll
 
 function escalera(d){ d.classList.remove("revelado"); const tok=Symbol(); d._tok=tok;
   const fl=document.getElementById("cl-flash"), logo=document.getElementById("es-logo");
-  const es=[0,1,2].map(i=>document.getElementById("es"+i)), V=[18.6,22.0,24.8], H=[300,440,580], X=[180,720,1260];
+  const es=[0,1,2,3].map(i=>document.getElementById("es"+i)), V=[12.8,18.6,22.0,24.8], H=[240,350,460,580], X=[130,560,990,1420];
   const br=document.getElementById("es-brillo"); const destello=()=>{ br.style.animation="none"; void br.offsetWidth; br.style.animation="resplandor 2.4s ease-out"; };
   const fmt=n=>n.toFixed(1).replace(".",",");
   const contar=(el,desde,hasta,ms)=>{ const t0=performance.now(); const paso=t=>{ if(d._tok!==tok) return; const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3);
       el.textContent=fmt(desde+(hasta-desde)*e); if(k<1) requestAnimationFrame(paso); }; requestAnimationFrame(paso); };
-  const subirLogo=(i,w)=>{ logo.style.width=w+"px"; logo.style.left=(X[i]+240-w/2)+"px"; logo.style.bottom=(78+H[i]+18)+"px"; logo.style.opacity=1; };
-  es.forEach((e,i)=>{ e.classList.remove("sube","listo","on","revela"); e.querySelector(".cnt").textContent=i===2?"?":"0,0"; });
-  logo.style.transition="none"; logo.style.opacity=0; subirLogo(0,210); logo.style.opacity=0; void logo.offsetWidth; logo.style.transition="";
-  [0,1].forEach(i=>timers.push(setTimeout(()=>{ es[i].classList.add("sube","on");
-     timers.push(setTimeout(()=>{ es[i].classList.add("listo"); contar(es[i].querySelector(".cnt"),i?V[0]:0,V[i],1500); subirLogo(i,210); sfx("hit",.8); },1000)); }, 1000+i*2400)));
-  timers.push(setTimeout(()=>{ es[2].classList.add("sube"); sfx("hit",.5); }, 6000));
-  timers.push(setTimeout(()=>sfx("riser",.45,1.6), 6800));
-  timers.push(setTimeout(()=>{ es[2].classList.add("on","revela","listo"); contar(es[2].querySelector(".cnt"),V[1],V[2],1800); subirLogo(2,240);
-     d.classList.add("revelado"); destello(); sfx("braam",.85); }, 8400)); }
+  const subirLogo=(i,w)=>{ logo.style.width=w+"px"; logo.style.left=(X[i]+190-w/2)+"px"; logo.style.bottom=(78+H[i]+18)+"px"; logo.style.opacity=1; };
+  es.forEach((e,i)=>{ e.classList.remove("sube","listo","on","revela"); e.querySelector(".cnt").textContent=i===3?"?":"0,0"; });
+  logo.style.transition="none"; logo.style.opacity=0; subirLogo(0,190); logo.style.opacity=0; void logo.offsetWidth; logo.style.transition="";
+  [0,1,2].forEach(i=>timers.push(setTimeout(()=>{ es[i].classList.add("sube","on");
+     timers.push(setTimeout(()=>{ es[i].classList.add("listo"); contar(es[i].querySelector(".cnt"),i?V[i-1]:0,V[i],1500); subirLogo(i,190); sfx("hit",.8); },1000)); }, 1000+i*2400)));
+  timers.push(setTimeout(()=>{ es[3].classList.add("sube"); sfx("hit",.5); }, 8400));
+  timers.push(setTimeout(()=>sfx("riser",.45,1.6), 9200));
+  timers.push(setTimeout(()=>{ es[3].classList.add("on","revela","listo"); contar(es[3].querySelector(".cnt"),V[2],V[3],1800); subirLogo(3,230);
+     d.classList.add("revelado"); destello(); sfx("braam",.85); }, 10800)); }
 
 function climax(d){ d.classList.remove("revelado"); const n=document.getElementById("cl-n"), y=document.getElementById("cl-y"), fl=document.getElementById("cl-flash"),
     aro=document.getElementById("cl-aro"), gr=document.getElementById("cl-grieta");
@@ -785,7 +787,7 @@ function brasas(){ const cv=document.getElementById("brasas"), x=cv.getContext("
 let actual=-1;
 const vjun=document.getElementById("vjun");
 /* ===== NOTAS DEL PRESENTADOR (tecla N, solo para repasar) ===== */
-const NOTAS={"00": {"t": "Portada", "x": "Buenas noches a todos. Hoy no venimos solo a ver números: venimos a contar una historia. La historia de cómo, en tres años, fuimos ganando el piso de venta, tienda por tienda. <i>(Pausa, dejar que se vea el título.)</i> Esta es… la conquista del piso."}, "03": {"t": "Las 3 fases", "x": "Como toda gran saga, esta historia tiene tres capítulos. <b>2024</b>, el despegue: la Guerra de los Pisos. <b>2025</b>, la expansión: la Liga Invencible. Y <b>2026</b>, la consolidación: la Jungla del Flooring. Tres años, tres batallas, un solo objetivo: ser la marca que manda en el piso."}, "04": {"t": "Fase 1 · 2024", "x": "Empezamos en 2024. El reto era claro: ganar presencia en el piso de venta frente a marcas muy establecidas. Fue nuestro despegue, la Guerra de los Pisos."}, "05": {"t": "El rival · coreanas", "x": "Del otro lado estaban las marcas coreanas. Tenían el espacio, la exhibición y la costumbre del cliente. Cada tienda tenía su piso… y no era nuestro. Para competir había que estar mejor exhibidos y más cerca del cliente."}, "06": {"t": "Fase 1 · Las misiones", "x": "¿Cómo lo hicimos? Con tres frentes: <b>exhibiciones</b> que se notaran en tienda, <b>fidelización</b>, cuidando la relación con cada cliente, y una <b>tripulación</b> unida. Cada exhibición armada y cada cliente atendido fue un paso adelante."}, "07": {"t": "Ganamos la primera batalla", "x": "Y lo logramos: ganamos la primera batalla y recuperamos piso de tienda. Fue la prueba de que, cuando el equipo empuja en la misma dirección, el piso responde."}, "08": {"t": "Fase 2 · 2025", "x": "Llegó 2025, la fase de la expansión. Ya no se trataba solo de defender: había que crecer, llegar a más tiendas y a más ciudades. Así nació la Liga Invencible."}, "09": {"t": "El rival · chinas", "x": "Pero apareció un nuevo rival: las marcas chinas, que llegaron con precio y con volumen. Era un desafío distinto, y había que responder con lo que nos diferencia: exhibición, servicio y equipo."}, "10": {"t": "Fase 2 · La expansión", "x": "La respuesta fue clara. <b>Más piso</b>: más y mejores exhibiciones. <b>Más ventas</b>: promotores que convierten cada visita en una venta. <b>Equipo mejor capacitado</b>: promotores que se prepararon para vender mejor. <i>(Pausa.)</i> Así, la Liga se volvió invencible."}, "12": {"t": "Fase 3 · 2026", "x": "Y llegamos a este año, 2026: la Jungla del Flooring. La fase de la consolidación, donde todo lo construido tenía que dar su mejor resultado."}, "13": {"t": "El reto", "x": "En 2026 el reto cambió. <i>(Pausa.)</i> Ya no había que conquistar el piso… <i>(pausa)</i> había que sostenerlo. Y sostener es más difícil que conquistar: exige constancia todos los días, en cada tienda."}, "15": {"t": "Una sola manada", "x": "Esto se logró en todo el país: Chiclayo, Huánuco, Iquitos, Trujillo y cada ciudad donde estamos, con exhibiciones impecables y una atención cercana. <i>(Esperar a que caigan las fotos.)</i> Muchas ciudades, muchos equipos… una sola manada."}, "16": {"t": "Clímax · Marca N.º 1", "x": "Miremos el camino. En 2024 teníamos el <b>18,6 %</b> de participación: éramos terceros. En 2025 subimos al <b>22,0 %</b>: segundos. <i>(Pausa mientras sube 2026.)</i> Y en 2026… <b>24,8 %</b>. <i>(Dejar que aparezca.)</i> Somos la marca número uno. <br><small>⚠ Confirmar que los porcentajes estén validados y qué miden antes del evento.</small>"}, "18": {"t": "2027 · La historia continúa", "x": "Y esto no termina aquí. 2027 ya viene, con nuevos retos y nuevas metas. La historia continúa… <i>(Pausa.)</i> Pero antes de mirar al futuro, hoy queremos reconocer a quienes hicieron posible este año. <b>Pasamos a la premiación.</b>"}};
+const NOTAS={"00": {"t": "Portada", "x": "Buenas noches a todos. Hoy no venimos solo a ver números: venimos a contar una historia. La historia de cómo, en tres años, fuimos ganando el piso de venta, tienda por tienda. <i>(Pausa, dejar que se vea el título.)</i> Esta es… la conquista del piso."}, "03": {"t": "Las 3 fases", "x": "Como toda gran saga, esta historia tiene tres capítulos. <b>2024</b>, el despegue: la Guerra de los Pisos. <b>2025</b>, la expansión: la Liga Invencible. Y <b>2026</b>, la consolidación: la Jungla del Flooring. Tres años, tres batallas, un solo objetivo: ser la marca que manda en el piso."}, "04": {"t": "Fase 1 · 2024", "x": "Empezamos en 2024. El reto era claro: ganar presencia en el piso de venta frente a marcas muy establecidas. Fue nuestro despegue, la Guerra de los Pisos."}, "05": {"t": "El rival · coreanas", "x": "Del otro lado estaban las marcas coreanas. Tenían el espacio, la exhibición y la costumbre del cliente. Cada tienda tenía su piso… y no era nuestro. Para competir había que estar mejor exhibidos y más cerca del cliente."}, "06": {"t": "Fase 1 · Las misiones", "x": "¿Cómo lo hicimos? Con tres frentes: <b>exhibiciones</b> que se notaran en tienda, <b>fidelización</b>, cuidando la relación con cada cliente, y una <b>tripulación</b> unida. Cada exhibición armada y cada cliente atendido fue un paso adelante."}, "07": {"t": "Ganamos la primera batalla", "x": "Y lo logramos: ganamos la primera batalla y recuperamos piso de tienda. Fue la prueba de que, cuando el equipo empuja en la misma dirección, el piso responde."}, "08": {"t": "Fase 2 · 2025", "x": "Llegó 2025, la fase de la expansión. Ya no se trataba solo de defender: había que crecer, llegar a más tiendas y a más ciudades. Así nació la Liga Invencible."}, "09": {"t": "El rival · chinas", "x": "Pero apareció un nuevo rival: las marcas chinas, que llegaron con precio y con volumen. Era un desafío distinto, y había que responder con lo que nos diferencia: exhibición, servicio y equipo."}, "10": {"t": "Fase 2 · La expansión", "x": "La respuesta fue clara. <b>Más piso</b>: más y mejores exhibiciones. <b>Más ventas</b>: promotores que convierten cada visita en una venta. <b>Equipo mejor capacitado</b>: promotores que se prepararon para vender mejor. <i>(Pausa.)</i> Así, la Liga se volvió invencible."}, "12": {"t": "Fase 3 · 2026", "x": "Y llegamos a este año, 2026: la Jungla del Flooring. La fase de la consolidación, donde todo lo construido tenía que dar su mejor resultado."}, "13": {"t": "El reto", "x": "En 2026 el reto cambió. <i>(Pausa.)</i> Ya no había que conquistar el piso… <i>(pausa)</i> había que sostenerlo. Y sostener es más difícil que conquistar: exige constancia todos los días, en cada tienda."}, "15": {"t": "Una sola manada", "x": "Esto se logró en todo el país: Chiclayo, Huánuco, Iquitos, Trujillo y cada ciudad donde estamos, con exhibiciones impecables y una atención cercana. <i>(Esperar a que caigan las fotos.)</i> Muchas ciudades, muchos equipos… una sola manada."}, "16": {"t": "Clímax · Marca N.º 1", "x": "Miremos el camino. En 2023 partimos con el <b>12,8 %</b> de participación: éramos terceros. En 2024 crecimos al <b>18,6 %</b>. En 2025 subimos al <b>22,0 %</b>: segundos. <i>(Pausa mientras sube 2026.)</i> Y en 2026… <b>24,8 %</b>. <i>(Dejar que aparezca.)</i> Somos la marca número uno. <br><small>⚠ Confirmar que los porcentajes estén validados y qué miden antes del evento.</small>"}, "18": {"t": "2027 · La historia continúa", "x": "Y esto no termina aquí. 2027 ya viene, con nuevos retos y nuevas metas. La historia continúa… <i>(pausa)</i> y el liderazgo continúa. <i>(Pausa.)</i> Pero antes de mirar al futuro, hoy queremos reconocer a quienes hicieron posible este año. <b>Pasamos a la premiación.</b>"}};
 function pintarNotas(d){ const n=NOTAS[d.dataset.f], el=document.getElementById("notas");
   el.innerHTML=n?`<div class="nt">${actual+1} / ${diapos.length} · ${n.t}</div><div class="nx">${n.x}</div>`:`<div class="nt">${actual+1} / ${diapos.length}</div><div class="nx">Sin notas.</div>`; }
 function ir(n,refresco){
