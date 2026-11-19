@@ -10,6 +10,9 @@
 @font-face{font-family:'Oswald';font-weight:200 700;src:url(fuentes/oswald.woff2) format('woff2');font-display:block}
 @font-face{font-family:'Montserrat';font-weight:100 900;src:url(fuentes/montserrat.woff2) format('woff2');font-display:block}
 @font-face{font-family:'Playfair';font-style:italic;font-weight:500;src:url(fuentes/playfair-italic.woff2) format('woff2');font-display:block}
+@font-face{font-family:'Fell';src:url(fuentes/imfell-sc.woff2) format('woff2');font-display:block}
+@font-face{font-family:'CormSC';font-weight:500;src:url(fuentes/cormorant-sc-500.woff2) format('woff2');font-display:block}
+@font-face{font-family:'CormSC';font-weight:700;src:url(fuentes/cormorant-sc-700.woff2) format('woff2');font-display:block}
 @font-face{font-family:'Rajdhani';font-weight:700;src:url(fuentes/rajdhani-700.woff2) format('woff2');font-display:block}
 
 :root{
@@ -60,7 +63,7 @@ body.oculto-cursor{cursor:none}
 
 /* ---------- Título ---------- */
 .titulo{position:absolute;top:40px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:14px}
-.titulo h1{font-family:'Cinzel',serif;font-weight:900;font-size:90px;letter-spacing:2px;line-height:1;white-space:nowrap;
+.titulo h1{font-family:'Fell',serif;font-weight:400;font-size:92px;letter-spacing:6px;line-height:1;white-space:nowrap;
   background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat,var(--oro-texto);
   background-size:260% 100%,100% 100%;background-position:160% 0,0 0;
   -webkit-background-clip:text;background-clip:text;color:transparent;
@@ -78,7 +81,7 @@ body.oculto-cursor{cursor:none}
 .zona .linea.der{transform:scaleX(-1)}
 /* línea PRIMER / SEGUNDO PUESTO */
 .puesto{position:absolute;top:254px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:20px}
-.puesto b{font:800 25px/1 'Montserrat',sans-serif;letter-spacing:11px;padding-left:11px}
+.puesto b{font:700 38px/1 'CormSC',serif;letter-spacing:14px;padding-left:14px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.95)) drop-shadow(0 0 10px rgba(0,0,0,.8))}
 .puesto i{width:9px;height:9px;transform:rotate(45deg);background:var(--oro-borde);flex:none}
 .puesto u{width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--linea))}
 .puesto u.der{transform:scaleX(-1)}
@@ -90,7 +93,7 @@ body.oculto-cursor{cursor:none}
 .placa span{position:relative;z-index:1;display:block;color:var(--tinta);text-align:center;white-space:nowrap;
   text-shadow:0 1px 0 var(--tinta-luz)}
 .zona .placa{padding:12px 92px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.6))}
-.zona .placa span{font-family:'Oswald',sans-serif;font-weight:600;font-size:56px;letter-spacing:5px;line-height:1.05}
+.zona .placa span{font-family:'Fell',serif;font-weight:400;font-size:56px;letter-spacing:5px;line-height:1.05}
 
 /* ---------- Tarjetas ---------- */
 .tarjetas{position:absolute;top:304px;left:0;right:0;display:flex;justify-content:center;gap:76px}
@@ -116,17 +119,17 @@ body.sin-siluetas .silueta{opacity:0}
   background:linear-gradient(115deg,transparent 30%,var(--destello) 50%,transparent 70%);background-size:300% 100%}
 
 .premiado .placa{margin-top:-46px;z-index:2;width:100%;padding:14px 40px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.65))}
-.premiado .placa span{font-family:'Oswald',sans-serif;font-weight:600;font-size:44px;letter-spacing:1.5px;line-height:1.1}
-.tienda{margin-top:20px;display:flex;align-items:center;gap:16px;font-family:'Montserrat',sans-serif;font-weight:600;
-  font-size:27px;letter-spacing:1.5px;color:#fff;text-transform:uppercase;white-space:nowrap;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.premiado .placa span{font-family:'Fell',serif;font-weight:400;font-size:44px;letter-spacing:1.5px;line-height:1.1}
+.tienda{margin-top:20px;display:flex;align-items:center;gap:16px;font-family:'CormSC',serif;font-weight:700;
+  font-size:40px;letter-spacing:4px;color:#fff;text-transform:uppercase;white-space:nowrap;text-shadow:0 2px 8px rgba(0,0,0,.9)}
 .tienda::before,.tienda::after{content:"";width:42px;height:2px;background:var(--linea)}
 
 /* ---------- Carátula de categoría ---------- */
 .car-centro{position:absolute;top:56px;left:0;right:0;display:flex;flex-direction:column;align-items:center}
-.car-pre{font:700 52px/1 'Cinzel',serif;letter-spacing:22px;padding-left:22px}
+.car-pre{font:500 64px/1 'CormSC',serif;letter-spacing:24px;padding-left:24px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.95)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
 .car-fila{display:flex;align-items:center;gap:22px;margin-top:14px}
 .car-fila .laurel{width:150px;height:228px;margin-top:0}
-.car-fila h1{font-family:'Cinzel',serif;font-weight:900;font-size:150px;line-height:1;letter-spacing:4px;white-space:nowrap;
+.car-fila h1{font-family:'Fell',serif;font-weight:400;font-size:150px;line-height:1;letter-spacing:8px;white-space:nowrap;
   background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat,var(--oro-texto);
   background-size:260% 100%,100% 100%;background-position:160% 0,0 0;
   -webkit-background-clip:text;background-clip:text;color:transparent;
@@ -134,13 +137,13 @@ body.sin-siluetas .silueta{opacity:0}
 .cierre .car-centro{top:250px}
 .cierre .car-fila .laurel{width:170px;height:258px}
 .cierre .car-frase{font-size:38px;margin-top:24px}
-.car-sub{font:900 66px/1.1 'Cinzel',serif;letter-spacing:5px;margin-top:-8px;white-space:nowrap}
+.car-sub{font:400 66px/1.1 'Fell',serif;letter-spacing:8px;margin-top:-8px;white-space:nowrap}
 .diapo.activa .car-sub{animation:sube 1s .8s cubic-bezier(.2,.8,.2,1) both}
 .car-orn{display:flex;align-items:center;gap:18px;margin-top:22px}
 .car-orn u{width:260px;height:2px;background:linear-gradient(90deg,transparent,var(--linea))}
 .car-orn u.der{transform:scaleX(-1)}
 .car-orn i{width:12px;height:12px;transform:rotate(45deg);background:var(--oro-borde)}
-.car-frase{margin-top:16px;font:italic 500 40px/1.3 'Playfair',serif;letter-spacing:.3px;color:#f7ecd2;text-align:center;
+.car-frase{margin-top:16px;font:500 40px/1.3 'CormSC',serif;letter-spacing:3px;color:#f7ecd2;text-align:center;
   text-shadow:0 2px 12px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.8)}
 /* ---------- Podio de premios (carátulas): aro de luz + rayos giratorios ---------- */
 .podio{position:absolute;bottom:30px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:170px}
@@ -171,10 +174,10 @@ body.sin-siluetas .silueta{opacity:0}
 @keyframes brilloProd{0%,55%{background-position:130% 0}100%{background-position:-30% 0}}
 @keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .p-txt{margin-top:46px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.p-puesto{font:800 20px/1 'Montserrat',sans-serif;letter-spacing:8px;padding-left:8px}
-.p-nombre{font:600 50px/1 'Oswald',sans-serif;letter-spacing:2px;color:#fff;text-transform:uppercase;text-shadow:0 2px 12px #000}
+.p-puesto{font:500 30px/1 'CormSC',serif;letter-spacing:10px;padding-left:10px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.95)) drop-shadow(0 0 10px rgba(0,0,0,.8))}
+.p-nombre{font:400 50px/1 'Fell',serif;letter-spacing:3px;color:#fff;text-transform:uppercase;text-shadow:0 2px 12px #000}
 .p2 .p-nombre{font-size:38px}
-.p-sku{font:700 28px/1 'Rajdhani',sans-serif;letter-spacing:5px;padding:8px 22px 6px 27px;border-radius:40px;color:#fff6dc;
+.p-sku{font:500 30px/1 'CormSC',serif;letter-spacing:5px;padding:8px 22px 6px 27px;border-radius:40px;color:#fff6dc;
   border:2px solid rgba(var(--c1),.9);background:rgba(0,0,0,.5);box-shadow:0 0 16px rgba(var(--c1),.45)}
 .p2 .p-sku{font-size:23px}
 .diapo.activa .premio.p1{animation:sube 1s 1.3s cubic-bezier(.2,.8,.2,1) both}
@@ -240,7 +243,8 @@ body.sin-siluetas .silueta{opacity:0}
 .seis .titulo h1{font-size:62px!important}
 .seis .titulo .laurel{width:70px;height:106px}
 .seis .logo{transform:scale(.75);transform-origin:top right}
-.seis .puesto{top:128px}
+.seis .puesto{top:104px}
+.medalla{display:none}
 .grupos{position:absolute;top:172px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:40px}
 .seis .tarjetas{position:static;gap:120px;zoom:.645}
 .diapo.activa.seis .premiado{transition-delay:calc(.6s + var(--k) * .12s)}
