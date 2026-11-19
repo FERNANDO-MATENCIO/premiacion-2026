@@ -125,6 +125,25 @@ body.sin-siluetas .silueta{opacity:0}
   font-size:40px;letter-spacing:4px;color:#fff;text-transform:uppercase;white-space:nowrap;text-shadow:0 2px 8px rgba(0,0,0,.9)}
 .tienda::before,.tienda::after{content:"";width:42px;height:2px;background:var(--linea)}
 
+/* ---------- Entrada: telón de luz ---------- */
+.tl{position:absolute;top:0;bottom:0;width:52%;z-index:8;pointer-events:none}
+.tl.i{left:0;background:linear-gradient(90deg,#000 72%,rgba(0,0,0,.9) 94%,rgba(0,0,0,0))}
+.tl.d{right:0;background:linear-gradient(270deg,#000 72%,rgba(0,0,0,.9) 94%,rgba(0,0,0,0))}
+.diapo.activa .tl.i{animation:abreI 2.8s 1.1s cubic-bezier(.65,0,.2,1) forwards}
+.diapo.activa .tl.d{animation:abreD 2.8s 1.1s cubic-bezier(.65,0,.2,1) forwards}
+@keyframes abreI{to{transform:translateX(-102%)}}
+@keyframes abreD{to{transform:translateX(102%)}}
+.haz{position:absolute;top:0;bottom:0;left:50%;width:6px;margin-left:-3px;z-index:9;opacity:0;pointer-events:none;background:#fff3d0;box-shadow:0 0 60px 22px rgba(255,210,130,.55)}
+.diapo.activa .haz{animation:haz 3.4s .2s ease-out forwards}
+@keyframes haz{0%{opacity:0;transform:scaleY(.2)}25%{opacity:1;transform:none}45%{opacity:1}100%{opacity:0;transform:scaleX(8)}}
+.diapo.activa.intro .logo{animation:aparece 1.2s 2.3s ease both}
+.diapo.activa.intro .laurel.izq{animation:entraLaurelI 1.2s 2s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa.intro .laurel.der{animation:entraLaurelD 1.2s 2s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa.intro .car-fila h1{animation:entraTitulo 1.4s 1.9s cubic-bezier(.2,.8,.2,1) both,brillo 6s ease-in-out infinite 4.2s}
+.diapo.activa.intro .car-sub{animation:sube 1s 2.5s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa.intro .car-orn{animation:abrePlaca 1s 2.8s cubic-bezier(.2,.8,.2,1) both}
+.diapo.activa.intro .car-frase{animation:sube 1.2s 3.2s cubic-bezier(.2,.8,.2,1) both}
+.intro .car-centro{top:250px}
 /* ---------- Carátula de categoría ---------- */
 .car-centro{position:absolute;top:56px;left:0;right:0;display:flex;flex-direction:column;align-items:center}
 .car-pre{font:500 64px/1 'CormSC',serif;letter-spacing:24px;padding-left:24px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.95)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
@@ -327,7 +346,7 @@ const PREMIADOS = {
 };
 
 // 6 POR DIAPO — Secuencia: carátula → 1er puesto (6: Lima arriba, Provincia abajo) → 2do puesto (6), por categoría (FLOORING, VENTAS, CAPACITACIÓN).
-const DIAPOS = [];
+const DIAPOS = [{ tipo: "intro" }];   // entrada: telón de luz con PREMIACIÓN 2026
 CATEGORIAS.forEach(c => {
   DIAPOS.push({ tipo: "caratula", categoria: c.nombre, frase: c.frase, premios: c.premios });
   ORDEN_PUESTOS.forEach(p =>
@@ -374,6 +393,15 @@ const ANIMALES=Object.values(REGIONES).map(r=>r.animal);
 DIAPOS.forEach((d,i)=>{
   const el=document.createElement("section");
   el.className="diapo "+d.tipo+(d.puesto===2?" plata":"");
+  if(d.tipo==="intro"){ el.className="diapo caratula intro"; el.innerHTML=`
+      <img class="logo" src="${LOGO}" alt="Indurama">
+      <div class="car-centro">
+        <div class="car-fila">${laurel("lgIa","izq")}<h1>PREMIACIÓN</h1>${laurel("lgIb","der")}</div>
+        <div class="car-sub texto-metal" style="font-family:'Cinzel',serif;font-weight:700">2026</div>
+        <div class="car-orn"><u></u><i></i><u class="der"></u></div>
+        <div class="car-frase">Detrás de cada número, hay un equipo.<br>Hoy los reconocemos.</div>
+      </div>
+      <div class="tl i"></div><div class="tl d"></div><div class="haz"></div>`; esc.appendChild(el); return; }
   if(d.tipo==="caratula"||d.tipo==="cierre"){
     if(d.tipo==="cierre") el.className="diapo caratula cierre";
     el.innerHTML=`
@@ -448,7 +476,7 @@ function ir(n){
 const siguiente=()=>ir(actual+1), anterior=()=>{ if(actual===0) volverHistoria(); else ir(actual-1); };
 /* en la primera diapo, ← vuelve al final de la presentación de los 3 años */
 const EN_MARCO=window.parent!==window;   // abierta dentro de la presentación de los 3 años
-addEventListener("message",e=>{ if((e.data||{}).t==="mostrar"){ document.getElementById("ayuda").classList.add("oculta"); actual=-1; ir(0); } });
+addEventListener("message",e=>{ if((e.data||{}).t==="mostrar"){ document.getElementById("ayuda").classList.add("oculta"); diapos.forEach(x=>x.classList.remove("activa")); void document.body.offsetWidth; actual=-1; ir(0); } });
 function volverHistoria(){ if(EN_MARCO){ parent.postMessage({t:"volver"},"*"); return; } location.href=location.protocol.startsWith("http") ? "historia/index.html#999" : "../../2_HISTORIA_3_A%C3%91OS/3_PRESENTACION_FINAL/index.html#999"; }
 addEventListener("keydown",e=>{
   const k=e.key;
