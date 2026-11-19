@@ -261,7 +261,7 @@ body.sin-siluetas .silueta{opacity:0}
 <canvas id="particulas"></canvas>
 <div id="escenario"></div>
 <div id="ayuda">
-  <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Flooring / Ventas / Capacitación &nbsp;·&nbsp;
+  <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Flooring / Capacitación / Ventas &nbsp;·&nbsp;
   <b>F</b> pantalla completa &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
 </div>
 
@@ -295,10 +295,10 @@ const PREMIO = {
 const CATEGORIAS = [
   { nombre: "FLOORING",     frase: "Reconocimiento a la excelencia en exhibición y punto de venta 2026",
     premios: { 1: PREMIO.refrigeradora, 2: PREMIO.microondas } },
-  { nombre: "VENTAS",       frase: "Reconocimiento al mejor desempeño en ventas 2026",
-    premios: { 1: PREMIO.lavadora,      2: PREMIO.microondas } },
   { nombre: "CAPACITACIÓN", frase: "Reconocimiento al compromiso con el aprendizaje 2026",
     premios: { 1: PREMIO.cocina,        2: PREMIO.microondas } },
+  { nombre: "VENTAS",       frase: "Reconocimiento al mejor desempeño en ventas 2026",
+    premios: { 1: PREMIO.lavadora,      2: PREMIO.microondas } },
 ];
 const ZONAS = ["LIMA", "PROVINCIA"];
 const ORDEN_PUESTOS = [1, 2];   // primero se muestra el 1er puesto (oro), luego el 2do (plata)
