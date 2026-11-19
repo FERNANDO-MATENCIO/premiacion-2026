@@ -447,7 +447,9 @@ function ir(n){
 }
 const siguiente=()=>ir(actual+1), anterior=()=>{ if(actual===0) volverHistoria(); else ir(actual-1); };
 /* en la primera diapo, ← vuelve al final de la presentación de los 3 años */
-function volverHistoria(){ location.href=location.protocol.startsWith("http") ? "historia/index.html#999" : "../../2_HISTORIA_3_A%C3%91OS/3_PRESENTACION_FINAL/index.html#999"; }
+const EN_MARCO=window.parent!==window;   // abierta dentro de la presentación de los 3 años
+addEventListener("message",e=>{ if((e.data||{}).t==="mostrar"){ document.getElementById("ayuda").classList.add("oculta"); actual=-1; ir(0); } });
+function volverHistoria(){ if(EN_MARCO){ parent.postMessage({t:"volver"},"*"); return; } location.href=location.protocol.startsWith("http") ? "historia/index.html#999" : "../../2_HISTORIA_3_A%C3%91OS/3_PRESENTACION_FINAL/index.html#999"; }
 addEventListener("keydown",e=>{
   const k=e.key;
   if(["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(k)){e.preventDefault();siguiente();}
@@ -455,7 +457,7 @@ addEventListener("keydown",e=>{
   else if(/^[1-3]$/.test(k)) ir(DIAPOS.findIndex(d=>d.tipo==="caratula"&&d.categoria===CATEGORIAS[+k-1].nombre));
   else if(k==="Home") ir(0);
   else if(k==="End") ir(diapos.length-1);
-  else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(k==="f"||k==="F"){ if(EN_MARCO) parent.postMessage({t:"fs"},"*"); else document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
   else if(k==="s"||k==="S") document.body.classList.toggle("sin-siluetas");
   else if(k==="h"||k==="H") document.getElementById("ayuda").classList.toggle("oculta");
 });
