@@ -393,7 +393,7 @@ body.guia #num{display:block}
   <div class="capa" id="c-jun"><video id="vjun" src="media/fondo_jungla.mp4" muted loop playsinline preload="auto"></video></div>
 
   <!-- 0 · PORTADA -->
-  <section class="d" data-tema="negro" data-f="00" data-nota="Portada: LA CONQUISTA DEL PISO sobre la jungla en tono dorado.">
+  <section class="d" data-tema="negro" data-f="00" data-musica="media/musica_jungla.mp3" data-nota="Portada: LA CONQUISTA DEL PISO sobre la jungla en tono dorado.">
     <div class="bg"><video class="kb" src="media/jungla_portada_loop.mp4" muted loop playsinline style="filter:saturate(.95) contrast(1.05) brightness(.7);--s0:1.03;--s1:1.1"></video>
       <div class="portada-calido"></div></div>
     <div class="vineta"></div><div class="destello" style="--dd:2.2s"></div>
@@ -423,7 +423,7 @@ body.guia #num{display:block}
 
   <!-- ===================== FASE 1 · 2024 ===================== -->
   <!-- 4 · CARÁTULA FASE 1 -->
-  <section class="d" data-tema="gal" data-f="04" data-nota="Video de naves (tuyo).">
+  <section class="d" data-tema="gal" data-f="04" data-musica="media/musica_espacio.mp3" data-nota="Video de naves (tuyo).">
     <div class="bg"><video class="kb" src="media/naves_loop.mp4" muted loop playsinline style="--s0:1.05;--s1:1.16;--o:35% 55%"></video></div><div class="destello"></div>
     <div class="capa-oscura" style="background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.75) 66%,rgba(0,0,0,.95) 90%)"></div>
     <div class="centro" style="top:650px">
@@ -466,7 +466,7 @@ body.guia #num{display:block}
 
   <!-- ===================== FASE 2 · 2025 ===================== -->
   <!-- 8 · CARÁTULA FASE 2 -->
-  <section class="d" data-tema="her" data-f="08" data-nota="Video de superhéroes (tuyo).">
+  <section class="d" data-tema="her" data-f="08" data-musica="media/musica_heroes.mp3" data-nota="Video de superhéroes (tuyo).">
     <div class="bg"><video class="kb" src="media/heroes_loop.mp4" muted loop playsinline style="--o:50% 35%;--s0:1.04;--s1:1.14"></video></div><div class="destello"></div>
     <div class="capa-oscura" style="background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.92) 88%)"></div>
     <div class="centro" style="top:660px">
@@ -500,7 +500,7 @@ body.guia #num{display:block}
 
   <!-- ===================== FASE 3 · 2026 ===================== -->
   <!-- 12 · CARÁTULA FASE 3 -->
-  <section class="d" data-tema="jun" data-f="12" data-nota="Video de animales (tuyo).">
+  <section class="d" data-tema="jun" data-f="12" data-musica="media/musica_jungla_fase.mp3" data-nota="Video de animales (tuyo).">
     <div class="bg"><video class="kb" src="media/animales_loop.mp4" muted loop playsinline style="--o:45% 40%;--s0:1.04;--s1:1.14"></video></div><div class="destello"></div>
     <div class="capa-oscura" style="background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.92) 88%)"></div>
     <div class="centro" style="top:672px">
@@ -569,7 +569,6 @@ body.guia #num{display:block}
   <div id="guia"></div>
   <div id="num"></div>
 </div>
-<audio id="mus-portada" src="media/musica_jungla.mp3" loop preload="auto"></audio>
 <audio id="mus-prem" loop preload="none"></audio>
 <div id="ayuda">→ / clic avanza · ← retrocede · N notas · G guía · M música · F pantalla completa</div>
 <div id="notas"></div>
@@ -816,7 +815,7 @@ function ir(n,refresco){
   document.getElementById("guia").innerHTML=g;
   document.getElementById("num").textContent=`${n+1} / ${diapos.length}`;
   pintarNotas(d);
-  musicaPortada();
+  musicaFase();
   if(n===diapos.length-1) setTimeout(prepararPremiacion,1200);
   try{ history.replaceState(null,"","#"+(n+1)); }catch(e){}
 }
@@ -847,18 +846,22 @@ addEventListener("message",e=>{ const m=e.data||{};
   if(m.t==="volver") volverDePremiacion();
   else if(m.t==="musica"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(!MUSP.paused) musPVol(silencio?0:MUSP_VOL,.3); } else if(m.t==="fs"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); } });
 const retroceder=()=>{ if(actual>0) ir(actual-1); };
-/* ===== MÚSICA: jungla solo en la portada (diapo 1); al avanzar se desvanece en 2 s ===== */
-const MUS=document.getElementById("mus-portada"), MUS_VOL=.9; let musFade=0;
-function musVolumen(obj,dur,fin){ cancelAnimationFrame(musFade); const v0=MUS.volume, t0=performance.now();
-  const paso=t=>{ const k=Math.min(1,(t-t0)/(dur*1000)); MUS.volume=Math.max(0,Math.min(1,v0+(obj-v0)*k));
-    if(k<1) musFade=requestAnimationFrame(paso); else if(fin) fin(); };
-  musFade=requestAnimationFrame(paso); }
-function musicaPortada(){ const enPortada=diapos[actual]&&diapos[actual].dataset.f==="00";
-  if(enPortada){ if(MUS.paused){ MUS.currentTime=0; MUS.volume=0; MUS.play().then(()=>musVolumen(silencio?0:MUS_VOL,1.2)).catch(()=>{}); }
-                 else musVolumen(silencio?0:MUS_VOL,.8); }
-  else if(!MUS.paused) musVolumen(0,2,()=>MUS.pause()); }
-/* el navegador solo deja sonar audio tras el primer clic o tecla: ahí arranca si seguimos en la portada */
-["pointerdown","keydown"].forEach(ev=>addEventListener(ev,()=>{ if(MUS.paused) musicaPortada(); },{capture:true}));
+/* ===== MÚSICA: suena solo en las diapos con data-musica (portada y portada de cada fase);
+   al avanzar a otra diapo se desvanece en 2 s ===== */
+const MUS_VOL=.9, MUSICAS={};
+diapos.forEach(d=>{ const src=d.dataset.musica; if(src&&!MUSICAS[src]){ const a=new Audio(src); a.loop=true; a.preload="auto"; a._fade=0; MUSICAS[src]=a; } });
+function fundir(a,obj,dur,fin){ cancelAnimationFrame(a._fade); const v0=a.volume, t0=performance.now();
+  const paso=t=>{ const k=Math.min(1,(t-t0)/(dur*1000)); a.volume=Math.max(0,Math.min(1,v0+(obj-v0)*k));
+    if(k<1) a._fade=requestAnimationFrame(paso); else if(fin) fin(); };
+  a._fade=requestAnimationFrame(paso); }
+function musicaFase(){ const src=diapos[actual]&&diapos[actual].dataset.musica, ahora=src&&MUSICAS[src];
+  Object.values(MUSICAS).forEach(a=>{ if(a!==ahora&&!a.paused) fundir(a,0,2,()=>a.pause()); });
+  if(!ahora) return;
+  if(ahora.paused){ ahora.currentTime=0; ahora.volume=0; ahora.play().then(()=>fundir(ahora,silencio?0:MUS_VOL,.6)).catch(()=>{}); }
+  else fundir(ahora,silencio?0:MUS_VOL,.6); }
+const musicaActual=()=>{ const src=diapos[actual]&&diapos[actual].dataset.musica; return src&&MUSICAS[src]; };
+/* el navegador solo deja sonar audio tras el primer clic o tecla: ahí arranca si la diapo tiene música */
+["pointerdown","keydown"].forEach(ev=>addEventListener(ev,()=>{ const a=musicaActual(); if(a&&a.paused) musicaFase(); },{capture:true}));
 addEventListener("keydown",e=>{
   if(document.body.classList.contains("en-premiacion")) return;
   if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){ e.preventDefault(); avanzar(); }
@@ -866,7 +869,7 @@ addEventListener("keydown",e=>{
   else if(e.key==="Home") ir(0); else if(e.key==="End") ir(diapos.length-1);
   else if(e.key==="g"||e.key==="G") document.body.classList.toggle("guia");
   else if(e.key==="n"||e.key==="N") document.body.classList.toggle("ver-notas");
-  else if(e.key==="m"||e.key==="M"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(MASTER) MASTER.gain.value=silencio?0:1; if(AUDIO.musica) AUDIO.musica.volume=silencio?0:.85; if(!MUS.paused&&diapos[actual].dataset.f==="00") musVolumen(silencio?0:MUS_VOL,.3); }
+  else if(e.key==="m"||e.key==="M"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(MASTER) MASTER.gain.value=silencio?0:1; if(AUDIO.musica) AUDIO.musica.volume=silencio?0:.85; { const a=musicaActual(); if(a&&!a.paused) fundir(a,silencio?0:MUS_VOL,.3); } }
   else if(e.key==="f"||e.key==="F"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); }
 });
 addEventListener("click",e=>{ if(document.body.classList.contains("en-premiacion")) return; if(e.clientX<innerWidth*.2) retroceder(); else avanzar(); });
