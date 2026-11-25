@@ -279,9 +279,10 @@ body.sin-siluetas .silueta{opacity:0}
 <div id="velo"></div>
 <canvas id="particulas"></canvas>
 <div id="escenario"></div>
+<audio id="mus-prem" src="musica/musica_premiacion.mp3" loop preload="none"></audio>
 <div id="ayuda">
   <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Flooring / Capacitación / Ventas &nbsp;·&nbsp;
-  <b>F</b> pantalla completa &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
+  <b>F</b> pantalla completa &nbsp;·&nbsp; <b>M</b> música &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
 </div>
 
 <script>
@@ -481,6 +482,18 @@ const siguiente=()=>ir(actual+1), anterior=()=>{ if(actual===0) volverHistoria()
 const EN_MARCO=window.parent!==window;   // abierta dentro de la presentación de los 3 años
 addEventListener("message",e=>{ if((e.data||{}).t==="mostrar"){ document.getElementById("ayuda").classList.add("oculta"); diapos.forEach(x=>x.classList.remove("activa")); void document.body.offsetWidth; actual=-1; ir(0); } });
 function volverHistoria(){ if(EN_MARCO){ parent.postMessage({t:"volver"},"*"); return; } location.href=location.protocol.startsWith("http") ? "historia/index.html#999" : "../../2_HISTORIA_3_A%C3%91OS/3_PRESENTACION_FINAL/index.html#999"; }
+/* ===== MÚSICA de la premiación (en loop) · M la silencia ===== */
+const MUSP=document.getElementById("mus-prem"), MUSP_VOL=.8; let musPSil=false, musPFade=0, premVisible=window.parent===window;   // dentro de la historia la música la toca la página de afuera
+if(premVisible) MUSP.preload="auto";
+function musPVol(obj,dur,fin){ cancelAnimationFrame(musPFade); const v0=MUSP.volume, t0=performance.now();
+  const paso=t=>{ const k=Math.min(1,(t-t0)/(dur*1000)); MUSP.volume=Math.max(0,Math.min(1,v0+(obj-v0)*k));
+    if(k<1) musPFade=requestAnimationFrame(paso); else if(fin) fin(); };
+  musPFade=requestAnimationFrame(paso); }
+function musicaPrem(desdeInicio){ if(!premVisible) return; if(desdeInicio) MUSP.currentTime=0;
+  if(MUSP.paused){ MUSP.volume=0; MUSP.play().then(()=>musPVol(musPSil?0:MUSP_VOL,2)).catch(()=>{}); } else musPVol(musPSil?0:MUSP_VOL,1); }
+function musicaPremFuera(){ if(!MUSP.paused) musPVol(0,2,()=>MUSP.pause()); }
+/* el navegador solo deja sonar audio tras el primer clic o tecla */
+["pointerdown","keydown"].forEach(ev=>addEventListener(ev,()=>{ if(MUSP.paused) musicaPrem(); },{capture:true}));
 addEventListener("keydown",e=>{
   const k=e.key;
   if(["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(k)){e.preventDefault();siguiente();}
@@ -491,6 +504,7 @@ addEventListener("keydown",e=>{
   else if(k==="f"||k==="F"){ if(EN_MARCO) parent.postMessage({t:"fs"},"*"); else document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
   else if(k==="s"||k==="S") document.body.classList.toggle("sin-siluetas");
   else if(k==="h"||k==="H") document.getElementById("ayuda").classList.toggle("oculta");
+  else if(k==="m"||k==="M"){ if(EN_MARCO){ parent.postMessage({t:"musica"},"*"); return; } musPSil=!musPSil; if(!MUSP.paused) musPVol(musPSil?0:MUSP_VOL,.3); }
 });
 addEventListener("click",siguiente);
 addEventListener("contextmenu",e=>{e.preventDefault();anterior();});

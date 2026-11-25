@@ -277,9 +277,10 @@ body.sin-siluetas .silueta{opacity:0}
 <div id="velo"></div>
 <canvas id="particulas"></canvas>
 <div id="escenario"></div>
+<audio id="mus-prem" src="musica/musica_premiacion.mp3" loop preload="auto"></audio>
 <div id="ayuda">
   <b>→ / Espacio / clic</b> siguiente &nbsp;·&nbsp; <b>←</b> atrás &nbsp;·&nbsp; <b>1 / 2 / 3</b> Flooring / Capacitación / Ventas &nbsp;·&nbsp;
-  <b>F</b> pantalla completa &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
+  <b>F</b> pantalla completa &nbsp;·&nbsp; <b>M</b> música &nbsp;·&nbsp; <b>S</b> siluetas &nbsp;·&nbsp; <b>H</b> ocultar ayuda
 </div>
 
 <script>
@@ -475,6 +476,17 @@ function ir(n){
   actual=n;
 }
 const siguiente=()=>ir(actual+1), anterior=()=>ir(actual-1);
+/* ===== MÚSICA de la premiación (en loop) · M la silencia ===== */
+const MUSP=document.getElementById("mus-prem"), MUSP_VOL=.8; let musPSil=false, musPFade=0, premVisible=window.parent===window;
+function musPVol(obj,dur,fin){ cancelAnimationFrame(musPFade); const v0=MUSP.volume, t0=performance.now();
+  const paso=t=>{ const k=Math.min(1,(t-t0)/(dur*1000)); MUSP.volume=Math.max(0,Math.min(1,v0+(obj-v0)*k));
+    if(k<1) musPFade=requestAnimationFrame(paso); else if(fin) fin(); };
+  musPFade=requestAnimationFrame(paso); }
+function musicaPrem(desdeInicio){ if(!premVisible) return; if(desdeInicio) MUSP.currentTime=0;
+  if(MUSP.paused){ MUSP.volume=0; MUSP.play().then(()=>musPVol(musPSil?0:MUSP_VOL,2)).catch(()=>{}); } else musPVol(musPSil?0:MUSP_VOL,1); }
+function musicaPremFuera(){ if(!MUSP.paused) musPVol(0,2,()=>MUSP.pause()); }
+/* el navegador solo deja sonar audio tras el primer clic o tecla */
+["pointerdown","keydown"].forEach(ev=>addEventListener(ev,()=>{ if(MUSP.paused) musicaPrem(); },{capture:true}));
 addEventListener("keydown",e=>{
   const k=e.key;
   if(["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(k)){e.preventDefault();siguiente();}
@@ -485,6 +497,7 @@ addEventListener("keydown",e=>{
   else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
   else if(k==="s"||k==="S") document.body.classList.toggle("sin-siluetas");
   else if(k==="h"||k==="H") document.getElementById("ayuda").classList.toggle("oculta");
+  else if(k==="m"||k==="M"){ musPSil=!musPSil; if(!MUSP.paused) musPVol(musPSil?0:MUSP_VOL,.3); }
 });
 addEventListener("click",siguiente);
 addEventListener("contextmenu",e=>{e.preventDefault();anterior();});
