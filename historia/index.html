@@ -396,8 +396,20 @@ body.guia #num{display:block}
   background:linear-gradient(180deg,rgba(30,22,8,.78),rgba(12,9,4,.78));box-shadow:0 0 30px rgba(255,190,90,.25),0 10px 30px rgba(0,0,0,.6);border-radius:3px}
 .r26-tienda small{font:700 22px CormSC;letter-spacing:8px;color:#d9c08a;border-right:1px solid rgba(232,199,122,.6);padding-right:22px}
 .r26-tienda b{font:700 54px CormSC;letter-spacing:4px;color:#fff3dc;text-shadow:0 2px 10px #000;white-space:nowrap}
-.r26-fotos{position:relative;height:410px;margin-top:28px}
-.r26-foto{position:absolute;top:0;width:600px;height:390px;border:3px solid rgba(236,205,140,.9);box-shadow:0 18px 40px rgba(0,0,0,.7)}
+.r26-fotos{position:relative;width:1250px;height:410px;margin-top:28px}
+.r26-foto{position:absolute;border:3px solid rgba(236,205,140,.9);box-shadow:0 14px 34px rgba(0,0,0,.7)}
+.r26-stats{position:absolute;top:0;height:410px;box-sizing:border-box;padding:22px 30px;display:flex;flex-direction:column;justify-content:center;gap:14px;
+  border:2px solid rgba(232,199,122,.7);background:linear-gradient(180deg,rgba(30,22,8,.82),rgba(10,8,4,.82));box-shadow:0 14px 34px rgba(0,0,0,.6);border-radius:3px}
+.r26-stats em{font:700 21px CormSC;font-style:normal;letter-spacing:6px;color:#d9c08a;text-align:center;border-bottom:1px solid rgba(232,199,122,.45);padding-bottom:10px}
+.r26-grid{display:grid;grid-template-columns:repeat(var(--cols,1),1fr);gap:10px 28px}
+.r26-grid div{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.r26-grid span{font:700 30px CormSC;letter-spacing:1px;color:#f3e8c9}
+.r26-grid b{font:700 60px/1 Cinzel;background:var(--oro);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 4px rgba(0,0,0,.8))}
+.r26-grid b small{font-size:30px;margin-left:2px}
+.r26-stats[style*="--cols:2"]{padding:22px 24px}
+.r26-stats[style*="--cols:2"] .r26-grid{gap:14px 30px}
+.r26-stats[style*="--cols:2"] .r26-grid span{font-size:26px}
+.r26-stats[style*="--cols:2"] .r26-grid b{font-size:52px}
 .r26-foto .slot{inset:0}
 .r26-accion{display:flex;align-items:baseline;gap:20px;margin-top:6px}
 .r26-accion small{font:700 22px CormSC;letter-spacing:8px;color:#e8c77a;white-space:nowrap}
@@ -432,7 +444,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 3 · LAS 3 FASES -->
-  <section class="d" data-tema="negro" data-f="03" data-nota="Pósters con tus 3 videos; fondo: tríptico de los mismos videos desenfocados.">
+  <section class="d" data-tema="negro" data-f="03" data-musica="media/musica_jungla.mp3" data-vol="bajo" data-nota="Pósters con tus 3 videos; fondo: tríptico de los mismos videos desenfocados.">
     <div class="bg"><div class="trip" style="left:-120px"><video src="media/naves_loop.mp4" muted loop playsinline></video></div><div class="trip" style="left:550px"><video src="media/heroes_loop.mp4" muted loop playsinline></video></div><div class="trip" style="left:1220px"><video src="media/animales_loop.mp4" muted loop playsinline></video></div><div class="trip-osc"></div></div>
     <div class="centro an" style="--i:0;top:120px"><div class="etq" style="color:#f3cf73">2024 · 2025 · 2026</div></div>
     <div class="poster an" style="--i:1;left:200px">
@@ -463,7 +475,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 5 · EL RIVAL: COREANAS -->
-  <section class="d" data-tema="gal" data-f="05" data-nota="Mismo video de naves, encuadrado en las naves coreanas con tinte rojo.">
+  <section class="d" data-tema="gal" data-f="05" data-musica="media/musica_espacio.mp3" data-vol="bajo" data-nota="Mismo video de naves, encuadrado en las naves coreanas con tinte rojo.">
     <div class="bg"><video class="kb" src="media/naves_loop.mp4" muted loop playsinline style="--o:96% 14%;--s0:1.75;--s1:1.95"></video></div><div class="alarma"></div>
     <div class="capa-oscura" style="background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 45%,rgba(120,0,10,.25) 100%)"></div>
     <div style="position:absolute;left:140px;top:560px">
@@ -474,7 +486,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 6 · MISIONES 2024 (fotos reales) -->
-  <section class="d" data-tema="gal" data-f="06" data-nota="Video de naves desenfocado detrás de los marcos.">
+  <section class="d" data-tema="gal" data-f="06" data-musica="media/musica_espacio.mp3" data-vol="bajo" data-nota="Video de naves desenfocado detrás de los marcos.">
     <div class="bg"><video class="kb" src="media/naves_loop.mp4" muted loop playsinline style="filter:blur(10px) brightness(.42);--s0:1.15;--s1:1.25"></video></div>
     <div class="centro" style="top:120px"><div class="s-etq an" style="--i:0">FASE 1 · EL DESPEGUE</div></div>
     <div class="holo izq an" style="--i:1;--rot:perspective(1200px) rotateY(14deg);left:140px;top:300px"><div class="slot" data-r="FOTO 06-1" data-desc="Exhibiciones 2024"></div><div class="et pc">EXHIBICIONES</div></div>
@@ -483,7 +495,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 7 · DESENLACE FASE 1 -->
-  <section class="d" data-tema="gal" data-f="07" data-nota="Mismo video de naves, encuadrado en la nave Indurama.">
+  <section class="d" data-tema="gal" data-f="07" data-musica="media/musica_espacio.mp3" data-vol="bajo" data-nota="Mismo video de naves, encuadrado en la nave Indurama.">
     <div class="bg"><video class="kb" src="media/naves_loop.mp4" muted loop playsinline style="--o:38% 62%;--s0:1.45;--s1:1.7"></video></div>
     <div class="capa-oscura" style="background:linear-gradient(270deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 50%,transparent 100%)"></div>
     <div style="position:absolute;right:140px;top:600px;text-align:right">
@@ -506,7 +518,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 9 · EL RIVAL: CHINAS -->
-  <section class="d" data-tema="her" data-f="09" data-nota="Mismo video de héroes, encuadrado en la bandera china con tinte rojo.">
+  <section class="d" data-tema="her" data-f="09" data-musica="media/musica_heroes.mp3" data-vol="bajo" data-nota="Mismo video de héroes, encuadrado en la bandera china con tinte rojo.">
     <div class="bg"><video class="kb" src="media/heroes_loop.mp4" muted loop playsinline style="--o:100% 100%;--s0:2.5;--s1:2.75"></video></div><div class="alarma"></div>
     <div class="capa-oscura" style="background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 50%,rgba(120,0,10,.3) 100%)"></div>
     <div style="position:absolute;left:140px;top:560px">
@@ -517,7 +529,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 09b · 2025: ANTES Y DESPUÉS de una exhibición. Fotos: recursos/2025 ANTES 1.jpg y 2025 DESPUES 1.jpg -->
-  <section class="d" data-tema="her" data-f="09b" data-nota="Antes y después: fotos en recursos/2025 ANTES 1.jpg y 2025 DESPUES 1.jpg (mismo ángulo).">
+  <section class="d" data-tema="her" data-f="09b" data-musica="media/musica_heroes.mp3" data-vol="bajo" data-nota="Antes y después: fotos en recursos/2025 ANTES 1.jpg y 2025 DESPUES 1.jpg (mismo ángulo).">
     <div class="bg"><video class="kb" src="media/heroes_loop.mp4" muted loop playsinline style="filter:blur(14px) brightness(.38);--s0:1.15;--s1:1.25"></video></div>
     <div class="centro" style="top:100px"><div class="h-etq an" style="--i:0">FASE 2 · 2025</div>
       <div class="an" style="--i:1;margin-top:4px"><span class="h-tit" style="font-size:76px;letter-spacing:6px;padding-left:6px">ASÍ CAMBIÓ EL PISO</span></div></div>
@@ -531,7 +543,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 10 · 2025: TRES FOTOS (exhibición, venta, capacitación) + lema -->
-  <section class="d" data-tema="her" data-f="10" data-nota="Tres fotos de 2025: exhibición, promotor vendiendo y capacitación.">
+  <section class="d" data-tema="her" data-f="10" data-musica="media/musica_heroes.mp3" data-vol="bajo" data-nota="Tres fotos de 2025: exhibición, promotor vendiendo y capacitación.">
     <div class="bg"><video class="kb" src="media/heroes_loop.mp4" muted loop playsinline style="filter:blur(10px) brightness(.38);--s0:1.15;--s1:1.25"></video></div>
     <div class="centro" style="top:100px"><div class="h-etq an" style="--i:0">FASE 2 · LA EXPANSIÓN</div></div>
     <div class="hcard an" style="--i:3;left:150px;--rot:rotate(-2deg)"><div class="slot" data-r="FOTO 10-1" data-desc="Exhibición 2025"></div><div class="et"><span class="h-tit">MÁS PISO</span></div></div>
@@ -553,7 +565,7 @@ body.guia #num{display:block}
   </section>
 
   <!-- 13 · EL RETO -->
-  <section class="d" data-tema="jun" data-f="13" data-desc="(opcional) Jaguar observando desde una roca">
+  <section class="d" data-tema="jun" data-f="13" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-desc="(opcional) Jaguar observando desde una roca">
     <div class="bg"></div>
     <div class="capa-oscura" style="background:rgba(0,0,0,.45)"></div>
     <div class="centro" style="top:340px">
@@ -564,94 +576,76 @@ body.guia #num{display:block}
     </div>
   </section>
 
-  <!-- 14-1 … 14-6 · 2026: QUÉ HIZO CADA REGIÓN (tienda, 2 fotos y la acción). Fotos: recursos/2026 <REGIÓN> 1.jpg y 2.jpg -->
-  <section class="d" data-tema="jun" data-f="14-1" data-nota="Región LIMA NORTE: fotos en recursos/2026 LIMA NORTE 1.jpg y 2026 LIMA NORTE 2.jpg">
+  <!-- 14-1 … 14-6 · 2026: QUÉ HIZO CADA REGIÓN (textos de REGIONES_ACCIONES.txt). Fotos: recursos/2026 <REGIÓN> 1.jpg, 2.jpg… -->
+  <section class="d" data-tema="jun" data-f="14-1" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región LIMA NORTE: fotos en recursos/2026 LIMA NORTE 1.jpg, 2.jpg…">
     <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
     <div class="r26-animal"><video src="media/LOBO_loop.mp4" muted loop playsinline></video></div>
     <div class="r26-lado">
       <div class="r26-clan an" style="--i:0"><i></i>LOS LOBOS</div>
       <div class="r26-reg zoom" style="--i:1">LIMA NORTE</div>
-      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 LIMA NORTE 1" data-desc="Foto 1 · LIMA NORTE"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 LIMA NORTE 2" data-desc="Foto 2 · LIMA NORTE"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
+      <div class="an" style="--i:3"><div class="r26-tienda"><small>LOGRO</small><b>LÍDERES EN COCINAS</b></div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:840px;height:410px"><div class="slot" data-r="2026 LIMA NORTE 1" data-desc="Foto 1 · LIMA NORTE"></div></div><div class="r26-stats an" style="--i:7;left:870px;width:380px;--cols:1"><em>PARTICIPACIÓN EN PISO</em><div class="r26-grid"><div><span>Cocinas</span><b>36<small>%</small></b></div><div><span>Refrigeración</span><b>22<small>%</small></b></div><div><span>Lavado</span><b>13<small>%</small></b></div></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Lideramos la exhibición de cocinas y vamos por refrigeración y lavado.</div></div>
     </div>
   </section>
-  <section class="d" data-tema="jun" data-f="14-2" data-nota="Región LIMA SUR: fotos en recursos/2026 LIMA SUR 1.jpg y 2026 LIMA SUR 2.jpg">
+  <section class="d" data-tema="jun" data-f="14-2" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región LIMA SUR: fotos en recursos/2026 LIMA SUR 1.jpg, 2.jpg…">
     <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
     <div class="r26-animal"><video src="media/HALCON_loop.mp4" muted loop playsinline></video></div>
     <div class="r26-lado">
       <div class="r26-clan an" style="--i:0"><i></i>LOS HALCONES</div>
       <div class="r26-reg zoom" style="--i:1">LIMA SUR</div>
-      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 LIMA SUR 1" data-desc="Foto 1 · LIMA SUR"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 LIMA SUR 2" data-desc="Foto 2 · LIMA SUR"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
+      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>METRO PRÓCERES</b></div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:300px;height:410px"><div class="slot" data-r="2026 LIMA SUR 1" data-desc="Foto 1 · LIMA SUR"></div></div><div class="r26-foto an" style="--i:6;left:320px;top:0px;width:300px;height:410px"><div class="slot" data-r="2026 LIMA SUR 2" data-desc="Foto 2 · LIMA SUR"></div></div><div class="r26-stats an" style="--i:7;left:650px;width:600px;--cols:2"><em>PARTICIPACIÓN EN PISO</em><div class="r26-grid"><div><span>Cocinas</span><b>40<small>%</small></b></div><div><span>Refrigeración</span><b>40<small>%</small></b></div><div><span>Lavado</span><b>16<small>%</small></b></div><div><span>Congeladoras</span><b>50<small>%</small></b></div></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Ganamos la confianza de la tienda, implementamos módulos y conquistamos nuevos espacios.</div></div>
     </div>
   </section>
-  <section class="d" data-tema="jun" data-f="14-3" data-nota="Región LIMA · CHIMBOTE: fotos en recursos/2026 LIMA CHIMBOTE 1.jpg y 2026 LIMA CHIMBOTE 2.jpg">
+  <section class="d" data-tema="jun" data-f="14-3" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región LIMA CENTRO: fotos en recursos/2026 LIMA CENTRO 1.jpg, 2.jpg…">
     <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
     <div class="r26-animal"><video src="media/LEON_loop.mp4" muted loop playsinline></video></div>
     <div class="r26-lado">
       <div class="r26-clan an" style="--i:0"><i></i>LOS LEONES</div>
-      <div class="r26-reg zoom" style="--i:1">LIMA · CHIMBOTE</div>
-      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 LIMA CHIMBOTE 1" data-desc="Foto 1 · LIMA · CHIMBOTE"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 LIMA CHIMBOTE 2" data-desc="Foto 2 · LIMA · CHIMBOTE"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
+      <div class="r26-reg zoom" style="--i:1">LIMA CENTRO</div>
+      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>OECHSLE CENTRO CÍVICO</b></div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:400px;height:410px"><div class="slot" data-r="2026 LIMA CENTRO 1" data-desc="Foto 1 · LIMA CENTRO"></div></div><div class="r26-foto an" style="--i:6;left:425px;top:0px;width:400px;height:410px"><div class="slot" data-r="2026 LIMA CENTRO 2" data-desc="Foto 2 · LIMA CENTRO"></div></div><div class="r26-foto an" style="--i:7;left:850px;top:0px;width:400px;height:410px"><div class="slot" data-r="2026 LIMA CENTRO 3" data-desc="Foto 3 · LIMA CENTRO"></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Un flooring afianzado: muebles propios, más piso frente a otras marcas y ventas firmes.</div></div>
     </div>
   </section>
-  <section class="d" data-tema="jun" data-f="14-4" data-nota="Región NORTE: fotos en recursos/2026 NORTE 1.jpg y 2026 NORTE 2.jpg">
+  <section class="d" data-tema="jun" data-f="14-4" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región SUR · ORIENTE: fotos en recursos/2026 SUR ORIENTE 1.jpg, 2.jpg…">
+    <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
+    <div class="r26-animal"><video src="media/PIRANA_loop.mp4" muted loop playsinline></video></div>
+    <div class="r26-lado">
+      <div class="r26-clan an" style="--i:0"><i></i>LAS PIRAÑAS</div>
+      <div class="r26-reg zoom" style="--i:1">SUR · ORIENTE</div>
+      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>ESTILOS · AREQUIPA</b></div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:540px;height:410px"><div class="slot" data-r="2026 SUR ORIENTE 1" data-desc="Foto 1 · SUR · ORIENTE"></div></div><div class="r26-foto an" style="--i:6;left:560px;top:0px;width:290px;height:197px"><div class="slot" data-r="2026 SUR ORIENTE 2" data-desc="Foto 2 · SUR · ORIENTE"></div></div><div class="r26-foto an" style="--i:7;left:560px;top:213px;width:290px;height:197px"><div class="slot" data-r="2026 SUR ORIENTE 3" data-desc="Foto 3 · SUR · ORIENTE"></div></div><div class="r26-stats an" style="--i:7;left:875px;width:375px;--cols:1"><em>PARTICIPACIÓN EN PISO</em><div class="r26-grid"><div><span>Cocinas</span><b>42<small>%</small></b></div><div><span>Refrigeración</span><b>27<small>%</small></b></div><div><span>Lavado</span><b>19<small>%</small></b></div></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Un equipo de promotores comprometido convirtió el trabajo en piso en resultados.</div></div>
+    </div>
+  </section>
+  <section class="d" data-tema="jun" data-f="14-5" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región CENTRO NSCH: fotos en recursos/2026 CENTRO NSCH 1.jpg, 2.jpg…">
+    <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
+    <div class="r26-animal"><video src="media/JAGUAR_loop.mp4" muted loop playsinline></video></div>
+    <div class="r26-lado">
+      <div class="r26-clan an" style="--i:0"><i></i>LOS JAGUARES</div>
+      <div class="r26-reg zoom" style="--i:1">CENTRO NSCH</div>
+      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>OECHSLE ICA</b></div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:760px;height:410px"><div class="slot" data-r="2026 CENTRO NSCH 1" data-desc="Foto 1 · CENTRO NSCH"></div></div><div class="r26-foto an" style="--i:6;left:780px;top:0px;width:470px;height:197px"><div class="slot" data-r="2026 CENTRO NSCH 2" data-desc="Foto 2 · CENTRO NSCH"></div></div><div class="r26-foto an" style="--i:7;left:780px;top:213px;width:470px;height:197px"><div class="slot" data-r="2026 CENTRO NSCH 3" data-desc="Foto 3 · CENTRO NSCH"></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Vendiendo por kiosko abrimos categorías nuevas, y hoy las congeladoras siguen en piso.</div></div>
+    </div>
+  </section>
+  <section class="d" data-tema="jun" data-f="14-6" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Región NORTE: fotos en recursos/2026 NORTE 1.jpg, 2.jpg…">
     <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
     <div class="r26-animal"><video src="media/AGUILA_loop.mp4" muted loop playsinline></video></div>
     <div class="r26-lado">
       <div class="r26-clan an" style="--i:0"><i></i>LAS ÁGUILAS</div>
       <div class="r26-reg zoom" style="--i:1">NORTE</div>
       <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 NORTE 1" data-desc="Foto 1 · NORTE"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 NORTE 2" data-desc="Foto 2 · NORTE"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
-    </div>
-  </section>
-  <section class="d" data-tema="jun" data-f="14-5" data-nota="Región ORIENTE · SUR: fotos en recursos/2026 ORIENTE SUR 1.jpg y 2026 ORIENTE SUR 2.jpg">
-    <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
-    <div class="r26-animal"><video src="media/PIRANA_loop.mp4" muted loop playsinline></video></div>
-    <div class="r26-lado">
-      <div class="r26-clan an" style="--i:0"><i></i>LAS PIRAÑAS</div>
-      <div class="r26-reg zoom" style="--i:1">ORIENTE · SUR</div>
-      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 ORIENTE SUR 1" data-desc="Foto 1 · ORIENTE · SUR"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 ORIENTE SUR 2" data-desc="Foto 2 · ORIENTE · SUR"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
-    </div>
-  </section>
-  <section class="d" data-tema="jun" data-f="14-6" data-nota="Región CENTRO NSCH: fotos en recursos/2026 CENTRO NSCH 1.jpg y 2026 CENTRO NSCH 2.jpg">
-    <div class="bg"></div><div class="capa-oscura" style="background:rgba(0,0,0,.3)"></div>
-    <div class="r26-animal"><video src="media/JAGUAR_loop.mp4" muted loop playsinline></video></div>
-    <div class="r26-lado">
-      <div class="r26-clan an" style="--i:0"><i></i>LOS JAGUARES</div>
-      <div class="r26-reg zoom" style="--i:1">CENTRO NSCH</div>
-      <div class="an" style="--i:3"><div class="r26-tienda"><small>TIENDA</small><b>NOMBRE DE LA TIENDA</b></div></div>
-      <div class="r26-fotos">
-        <div class="r26-foto an" style="--i:5;left:0;--rot:rotate(-1.2deg)"><div class="slot" data-r="2026 CENTRO NSCH 1" data-desc="Foto 1 · CENTRO NSCH"></div></div>
-        <div class="r26-foto an" style="--i:6;left:650px;--rot:rotate(1.2deg)"><div class="slot" data-r="2026 CENTRO NSCH 2" data-desc="Foto 2 · CENTRO NSCH"></div></div>
-      </div>
-      <div class="r26-accion an" style="--i:8"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
+      <div class="r26-fotos"><div class="r26-foto an" style="--i:5;left:0px;top:0px;width:610px;height:410px"><div class="slot" data-r="2026 NORTE 1" data-desc="Foto 1 · NORTE"></div></div><div class="r26-foto an" style="--i:6;left:640px;top:0px;width:610px;height:410px"><div class="slot" data-r="2026 NORTE 2" data-desc="Foto 2 · NORTE"></div></div></div>
+      <div class="r26-accion an" style="--i:9"><small>LA ACCIÓN</small><div>Aquí va, en una frase corta, la acción que hizo la región.</div></div>
     </div>
   </section>
 
   <!-- 15 · LLUVIA DE POLAROIDS 2026 (ciudades, exhibiciones, ventas…) + lema -->
-  <section class="d" data-tema="jun" data-f="15" data-nota="Lluvia de polaroids (lista LLUVIA en el script); al llenarse aparece UNA SOLA MANADA.">
+  <section class="d" data-tema="jun" data-f="15" data-musica="media/musica_jungla_fase.mp3" data-vol="bajo" data-nota="Lluvia de polaroids (lista LLUVIA en el script); al llenarse aparece UNA SOLA MANADA.">
     <div class="bg"><video class="kb" src="media/jungla_portada_loop.mp4" muted loop playsinline style="filter:sepia(.2) saturate(1.05) contrast(1.05) brightness(.62);--s0:1.04;--s1:1.1"></video><div class="es-calido"></div></div>
     <div class="capa-oscura" style="background:rgba(0,0,0,.08)"></div>
     <div class="centro" style="top:110px"><div class="j-etq an" style="--i:0">— FASE 3 · LA CONSOLIDACIÓN —</div></div>
@@ -913,7 +907,7 @@ function brasas(){ const cv=document.getElementById("brasas"), x=cv.getContext("
 let actual=-1;
 const vjun=document.getElementById("vjun");
 /* ===== NOTAS DEL PRESENTADOR (tecla N, solo para repasar) ===== */
-const NOTAS={"00": {"t": "Portada", "x": "Buenas noches a todos. Hoy no venimos solo a ver números: venimos a contar una historia. La historia de cómo, en tres años, fuimos ganando el piso de venta, tienda por tienda. <i>(Pausa, dejar que se vea el título.)</i> Esta es… la conquista del piso."}, "03": {"t": "Las 3 fases", "x": "Como toda gran saga, esta historia tiene tres capítulos. <b>2024</b>, el despegue: la Guerra de los Pisos. <b>2025</b>, la expansión: la Liga Invencible. Y <b>2026</b>, la consolidación: la Jungla del Flooring. Tres años, tres batallas, un solo objetivo: ser la marca que manda en el piso."}, "04": {"t": "Fase 1 · 2024", "x": "Empezamos en 2024. El reto era claro: ganar presencia en el piso de venta frente a marcas muy establecidas. Fue nuestro despegue, la Guerra de los Pisos."}, "05": {"t": "El rival · coreanas", "x": "Del otro lado estaban las marcas coreanas. Tenían el espacio, la exhibición y la costumbre del cliente. Cada tienda tenía su piso… y no era nuestro. Para competir había que estar mejor exhibidos y más cerca del cliente."}, "06": {"t": "Fase 1 · Las misiones", "x": "¿Cómo lo hicimos? Con tres frentes: <b>exhibiciones</b> que se notaran en tienda, <b>fidelización</b>, cuidando la relación con cada cliente, y una <b>tripulación</b> unida. Cada exhibición armada y cada cliente atendido fue un paso adelante."}, "07": {"t": "Ganamos la primera batalla", "x": "Y lo logramos: ganamos la primera batalla y recuperamos piso de tienda. Fue la prueba de que, cuando el equipo empuja en la misma dirección, el piso responde."}, "08": {"t": "Fase 2 · 2025", "x": "Llegó 2025, la fase de la expansión. Ya no se trataba solo de defender: había que crecer, llegar a más tiendas y a más ciudades. Así nació la Liga Invencible."}, "09": {"t": "El rival · chinas", "x": "Pero apareció un nuevo rival: las marcas chinas, que llegaron con precio y con volumen. Era un desafío distinto, y había que responder con lo que nos diferencia: exhibición, servicio y equipo."}, "09b": {"t": "Antes y después", "x": "Y esto se ve en el piso. <i>(Señalar la foto de la izquierda.)</i> Así estaba esta tienda antes… <i>(pausa)</i> y así quedó después. Esa diferencia la hizo el equipo, exhibición por exhibición. <br><small>Completar con la tienda y la región reales.</small>"}, "10": {"t": "Fase 2 · La expansión", "x": "La respuesta fue clara. <b>Más piso</b>: más y mejores exhibiciones. <b>Más ventas</b>: promotores que convierten cada visita en una venta. <b>Equipo mejor capacitado</b>: promotores que se prepararon para vender mejor. <i>(Pausa.)</i> Así, la Liga se volvió invencible."}, "12": {"t": "Fase 3 · 2026", "x": "Y llegamos a este año, 2026: la Jungla del Flooring. La fase de la consolidación, donde todo lo construido tenía que dar su mejor resultado."}, "13": {"t": "El reto", "x": "En 2026 el reto cambió. <i>(Pausa.)</i> Ya no había que conquistar el piso… <i>(pausa)</i> había que sostenerlo. Y sostener es más difícil que conquistar: exige constancia todos los días, en cada tienda."}, "14-1": {"t": "Región Lima Norte", "x": "<b>Lima Norte</b>, los lobos. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "14-2": {"t": "Región Lima Sur", "x": "<b>Lima Sur</b>, los halcones. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "14-3": {"t": "Región Lima · Chimbote", "x": "<b>Lima · Chimbote</b>, los leones. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "14-4": {"t": "Región Norte", "x": "<b>Norte</b>, las águilas. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "14-5": {"t": "Región Oriente · Sur", "x": "<b>Oriente · Sur</b>, las pirañas. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "14-6": {"t": "Región Centro Nsch", "x": "<b>Centro Nsch</b>, los jaguares. En la tienda <i>(nombre)</i> hicieron <i>(la acción)</i>. <i>(Señalar las fotos.)</i> <br><small>Completar con la tienda y la acción reales.</small>"}, "15": {"t": "Una sola manada", "x": "Esto se logró en todo el país: Chiclayo, Huánuco, Iquitos, Trujillo y cada ciudad donde estamos, con exhibiciones impecables y una atención cercana. <i>(Esperar a que caigan las fotos.)</i> Muchas ciudades, muchos equipos… una sola manada."}, "16": {"t": "Clímax · Marca N.º 1", "x": "Miremos el camino. En 2023 partimos con el <b>12,8 %</b> de participación: éramos terceros. En 2024 crecimos al <b>18,6 %</b>. En 2025 subimos al <b>22,0 %</b>: segundos. <i>(Pausa mientras sube 2026.)</i> Y en 2026… <b>24,8 %</b>. <i>(Dejar que aparezca.)</i> Somos la marca número uno. <br><small>⚠ Confirmar que los porcentajes estén validados y qué miden antes del evento.</small>"}, "18": {"t": "2027 · La historia continúa", "x": "Y esto no termina aquí. 2027 ya viene, con nuevos retos y nuevas metas. La historia continúa… <i>(pausa)</i> y el liderazgo continúa. <i>(Pausa.)</i> Pero antes de mirar al futuro, hoy queremos reconocer a quienes hicieron posible este año. <b>Pasamos a la premiación.</b>"}};
+const NOTAS={"00": {"t": "Portada", "x": "Buenas noches a todos. Hoy no venimos solo a ver números: venimos a contar una historia. La historia de cómo, en tres años, fuimos ganando el piso de venta, tienda por tienda. <i>(Pausa, dejar que se vea el título.)</i> Esta es… la conquista del piso."}, "03": {"t": "Las 3 fases", "x": "Como toda gran saga, esta historia tiene tres capítulos. <b>2024</b>, el despegue: la Guerra de los Pisos. <b>2025</b>, la expansión: la Liga Invencible. Y <b>2026</b>, la consolidación: la Jungla del Flooring. Tres años, tres batallas, un solo objetivo: ser la marca que manda en el piso."}, "04": {"t": "Fase 1 · 2024", "x": "Empezamos en 2024. El reto era claro: ganar presencia en el piso de venta frente a marcas muy establecidas. Fue nuestro despegue, la Guerra de los Pisos."}, "05": {"t": "El rival · coreanas", "x": "Del otro lado estaban las marcas coreanas. Tenían el espacio, la exhibición y la costumbre del cliente. Cada tienda tenía su piso… y no era nuestro. Para competir había que estar mejor exhibidos y más cerca del cliente."}, "06": {"t": "Fase 1 · Las misiones", "x": "¿Cómo lo hicimos? Con tres frentes: <b>exhibiciones</b> que se notaran en tienda, <b>fidelización</b>, cuidando la relación con cada cliente, y una <b>tripulación</b> unida. Cada exhibición armada y cada cliente atendido fue un paso adelante."}, "07": {"t": "Ganamos la primera batalla", "x": "Y lo logramos: ganamos la primera batalla y recuperamos piso de tienda. Fue la prueba de que, cuando el equipo empuja en la misma dirección, el piso responde."}, "08": {"t": "Fase 2 · 2025", "x": "Llegó 2025, la fase de la expansión. Ya no se trataba solo de defender: había que crecer, llegar a más tiendas y a más ciudades. Así nació la Liga Invencible."}, "09": {"t": "El rival · chinas", "x": "Pero apareció un nuevo rival: las marcas chinas, que llegaron con precio y con volumen. Era un desafío distinto, y había que responder con lo que nos diferencia: exhibición, servicio y equipo."}, "09b": {"t": "Antes y después", "x": "Y esto se ve en el piso. <i>(Señalar la foto de la izquierda.)</i> Así estaba esta tienda antes… <i>(pausa)</i> y así quedó después. Esa diferencia la hizo el equipo, exhibición por exhibición. <br><small>Completar con la tienda y la región reales.</small>"}, "10": {"t": "Fase 2 · La expansión", "x": "La respuesta fue clara. <b>Más piso</b>: más y mejores exhibiciones. <b>Más ventas</b>: promotores que convierten cada visita en una venta. <b>Equipo mejor capacitado</b>: promotores que se prepararon para vender mejor. <i>(Pausa.)</i> Así, la Liga se volvió invencible."}, "12": {"t": "Fase 3 · 2026", "x": "Y llegamos a este año, 2026: la Jungla del Flooring. La fase de la consolidación, donde todo lo construido tenía que dar su mejor resultado."}, "13": {"t": "El reto", "x": "En 2026 el reto cambió. <i>(Pausa.)</i> Ya no había que conquistar el piso… <i>(pausa)</i> había que sostenerlo. Y sostener es más difícil que conquistar: exige constancia todos los días, en cada tienda."}, "14-1": {"t": "Región Lima Norte", "x": "<b>Lima Norte</b>, los lobos. Nuestra mayor fortaleza está en cocinas: lideramos la participación de exhibición con <b>36 %</b>. En refrigeración (22 %) y lavado (13 %) tenemos espacio para crecer, con más productos exhibidos y más presencia de marca en el punto de venta."}, "14-2": {"t": "Región Lima Sur", "x": "<b>Lima Sur</b>, los halcones. En <b>Metro Próceres</b> fortalecimos la relación con el jefe de tienda y los vendedores. Implementamos módulos de cocina y refrigeración y, junto al promotor, ganamos nuevos espacios: cocinas 40 %, refrigeración 40 %, lavado 16 % y congeladoras 50 %."}, "14-3": {"t": "Región Lima Centro", "x": "<b>Lima Centro</b>, los leones. <b>Oechsle Centro Cívico</b> es el ejemplo de un flooring afianzado: por los muebles presentes, por la participación frente a otras marcas y por cómo se sostuvieron las ventas."}, "14-4": {"t": "Región Sur · Oriente", "x": "<b>Sur · Oriente</b>, las pirañas. En Arequipa se formó y fidelizó un equipo de promotores, trabajando de cerca con cada uno. En <b>Tienda Estilos</b> mejoramos posicionamiento y exhibición con el promotor: cocinas 42 %, refrigeración 27 % y lavado 19 %."}, "14-5": {"t": "Región Centro Nsch", "x": "<b>Centro NSCH</b>, los jaguares. En <b>Oechsle Ica</b> el éxito del flooring vino de vender por kiosko categorías que no teníamos en piso. Hoy mantenemos congeladoras en el piso de venta, y eso ayudó a armar las rumas de PEDs."}, "14-6": {"t": "Región Norte", "x": "<b>Norte</b>, las águilas. <i>(Pendiente: tienda y acción.)</i>"}, "15": {"t": "Una sola manada", "x": "Esto se logró en todo el país: Chiclayo, Huánuco, Iquitos, Trujillo y cada ciudad donde estamos, con exhibiciones impecables y una atención cercana. <i>(Esperar a que caigan las fotos.)</i> Muchas ciudades, muchos equipos… una sola manada."}, "16": {"t": "Clímax · Marca N.º 1", "x": "Miremos el camino. En 2023 partimos con el <b>12,8 %</b> de participación: éramos terceros. En 2024 crecimos al <b>18,6 %</b>. En 2025 subimos al <b>22,0 %</b>: segundos. <i>(Pausa mientras sube 2026.)</i> Y en 2026… <b>24,8 %</b>. <i>(Dejar que aparezca.)</i> Somos la marca número uno. <br><small>⚠ Confirmar que los porcentajes estén validados y qué miden antes del evento.</small>"}, "18": {"t": "2027 · La historia continúa", "x": "Y esto no termina aquí. 2027 ya viene, con nuevos retos y nuevas metas. La historia continúa… <i>(pausa)</i> y el liderazgo continúa. <i>(Pausa.)</i> Pero antes de mirar al futuro, hoy queremos reconocer a quienes hicieron posible este año. <b>Pasamos a la premiación.</b>"}};
 function pintarNotas(d){ const n=NOTAS[d.dataset.f], el=document.getElementById("notas");
   el.innerHTML=n?`<div class="nt">${actual+1} / ${diapos.length} · ${n.t}</div><div class="nx">${n.x}</div>`:`<div class="nt">${actual+1} / ${diapos.length}</div><div class="nx">Sin notas.</div>`; }
 function ir(n,refresco){
@@ -978,7 +972,8 @@ document.fonts.ready.then(()=>document.querySelectorAll(".r26-reg,.r26-tienda b"
 const retroceder=()=>{ if(actual>0) ir(actual-1); };
 /* ===== MÚSICA: suena solo en las diapos con data-musica (portada y portada de cada fase);
    al avanzar a otra diapo se desvanece en 2 s ===== */
-const MUS_VOL=.9, MUSICAS={};
+const MUS_VOL=.9, MUS_BAJO=.15, MUSICAS={};   // portada de la fase: fuerte · resto de la fase: de fondo mientras se habla
+const volDiapo=()=>silencio?0:(diapos[actual]&&diapos[actual].dataset.vol==="bajo"?MUS_BAJO:MUS_VOL);
 diapos.forEach(d=>{ const src=d.dataset.musica; if(src&&!MUSICAS[src]){ const a=new Audio(src); a.loop=true; a.preload="auto"; a._fade=0; MUSICAS[src]=a; } });
 function fundir(a,obj,dur,fin){ cancelAnimationFrame(a._fade); const v0=a.volume, t0=performance.now();
   const paso=t=>{ const k=Math.min(1,(t-t0)/(dur*1000)); a.volume=Math.max(0,Math.min(1,v0+(obj-v0)*k));
@@ -987,8 +982,9 @@ function fundir(a,obj,dur,fin){ cancelAnimationFrame(a._fade); const v0=a.volume
 function musicaFase(){ const src=diapos[actual]&&diapos[actual].dataset.musica, ahora=src&&MUSICAS[src];
   Object.values(MUSICAS).forEach(a=>{ if(a!==ahora&&!a.paused) fundir(a,0,2,()=>a.pause()); });
   if(!ahora) return;
-  if(ahora.paused){ ahora.currentTime=0; ahora.volume=0; ahora.play().then(()=>fundir(ahora,silencio?0:MUS_VOL,.6)).catch(()=>{}); }
-  else fundir(ahora,silencio?0:MUS_VOL,.6); }
+  const obj=volDiapo();
+  if(ahora.paused){ ahora.currentTime=0; ahora.volume=0; ahora.play().then(()=>fundir(ahora,volDiapo(),.6)).catch(()=>{}); }
+  else fundir(ahora,obj,obj<ahora.volume?2:.6); }   // al bajar, en 2 s para que no se note el corte
 const musicaActual=()=>{ const src=diapos[actual]&&diapos[actual].dataset.musica; return src&&MUSICAS[src]; };
 /* el navegador solo deja sonar audio tras el primer clic o tecla: ahí arranca si la diapo tiene música */
 ["pointerdown","keydown"].forEach(ev=>addEventListener(ev,()=>{ const a=musicaActual(); if(a&&a.paused) musicaFase(); },{capture:true}));
@@ -999,7 +995,7 @@ addEventListener("keydown",e=>{
   else if(e.key==="Home") ir(0); else if(e.key==="End") ir(diapos.length-1);
   else if(e.key==="g"||e.key==="G") document.body.classList.toggle("guia");
   else if(e.key==="n"||e.key==="N") document.body.classList.toggle("ver-notas");
-  else if(e.key==="m"||e.key==="M"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(MASTER) MASTER.gain.value=silencio?0:1; if(AUDIO.musica) AUDIO.musica.volume=silencio?0:.85; { const a=musicaActual(); if(a&&!a.paused) fundir(a,silencio?0:MUS_VOL,.3); } }
+  else if(e.key==="m"||e.key==="M"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(MASTER) MASTER.gain.value=silencio?0:1; if(AUDIO.musica) AUDIO.musica.volume=silencio?0:.85; { const a=musicaActual(); if(a&&!a.paused) fundir(a,volDiapo(),.3); } }
   else if(e.key==="f"||e.key==="F"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); }
 });
 addEventListener("click",e=>{ if(document.body.classList.contains("en-premiacion")) return; if(e.clientX<innerWidth*.2) retroceder(); else avanzar(); });
