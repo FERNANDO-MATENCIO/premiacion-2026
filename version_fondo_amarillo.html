@@ -323,6 +323,18 @@ body.sin-siluetas .silueta{opacity:0}
 .tk-nom{margin-top:6px;text-align:center;font:500 22px 'CormSC',serif;letter-spacing:3px;color:#d9c08a;text-shadow:0 2px 8px #000;white-space:nowrap}
 .tk-nube{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
 .tiktok .titulo,.tiktok .puesto,.tiktok .logo{z-index:3}
+/* ---------- TikTok · propuesta 2: uno por uno (15 s cada uno) y al final todos ---------- */
+.tk-uno:not(.todos) .tk-cel{opacity:0;visibility:hidden}
+.tk-uno .tk-cel{transition:opacity 1s ease}
+.tk-uno.todos .tk-foco{opacity:0;visibility:hidden}
+.tk-foco{position:absolute;left:0;right:0;top:206px;z-index:2;display:flex;flex-direction:column;align-items:center;transition:opacity .8s ease}
+.tk-foco .tel{opacity:0;transform:scale(.94);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.tk-foco.ver .tel{opacity:1;transform:none}
+.tk-foco .tk-reg{font-size:40px;margin-top:20px}
+.tk-foco .tk-nom{font-size:26px}
+.tk-puntos{display:flex;gap:18px;margin-top:16px}
+.tk-punto{width:12px;height:12px;transform:rotate(45deg);border:1px solid #e8c77a;opacity:.5}
+.tk-punto.on{background:var(--oro-borde);opacity:1;box-shadow:0 0 10px rgba(255,200,90,.7)}
 .tk-flota{position:absolute;top:1120px;opacity:.38;animation:tkSube linear infinite;filter:drop-shadow(0 0 10px rgba(37,244,238,.35))}
 @keyframes tkSube{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-1300px) rotate(var(--g))}}
 </style>
@@ -417,6 +429,7 @@ const TIKTOKS = [
   { region: "SUR · ORIENTE", video: "videos/tiktok_oriente.mp4",     nombre: "NOMBRE DEL GANADOR" },
   { region: "CENTRO NSCH",   video: "videos/tiktok_centro_nsch.mp4", nombre: "NOMBRE DEL GANADOR" }];
 DIAPOS.push({ tipo: "tiktok" });
+DIAPOS.push({ tipo: "tiktok", unoPorUno: true });   // propuesta 2 (uno por uno). Borrar la que no se elija.
 // Embajadores de marca: después de VENTAS · segundo puesto, antes del cierre
 const EMBAJADORES = [["Giovanna Palmieri","Asistente de Servicio",15],["Marisol Velasco","Gerente de Finanzas y Administración",10],
   ["Mishell Nuñez","Asistente Comercial",10],["Karina Suarez","Vendedora",10],["Marcia Zuñiga","Vendedora",10],
@@ -472,7 +485,7 @@ DIAPOS.forEach((d,i)=>{
       </div>
       <div class="tl i"></div><div class="tl d"></div><div class="haz"></div>`; esc.appendChild(el); return; }
   if(d.tipo==="tiktok"){
-    el.className="diapo tiktok embajadores";
+    el.className="diapo tiktok embajadores"+(d.unoPorUno?" tk-uno":"");
     const NOTA="M30 4h6c1 5 5 9 10 9v6c-4 0-7.5-1.3-10-3.3V31a11 11 0 1 1-11-11h1v6.2a5 5 0 1 0 4 4.8Z";
     const tk=s=>`<svg viewBox="0 0 48 48" width="${s}" height="${s}"><path d="${NOTA}" fill="#25F4EE" transform="translate(-1.6,-1.4)"/><path d="${NOTA}" fill="#FE2C55" transform="translate(1.6,1.4)"/><path d="${NOTA}" fill="#fff"/></svg>`;
     let nube=""; for(let j=0;j<26;j++){ const s=34+((j*37)%60);
@@ -486,7 +499,12 @@ DIAPOS.forEach((d,i)=>{
           <div class="pant"><video data-src="${t.video}" muted loop playsinline preload="auto"></video><div class="isla"></div>
             <div class="ui-d"><span>${tk(36)}</span><span>♥</span><span>💬</span><span>➦</span></div>
             <div class="ui-i">#ConcursoTikTokIndurama</div></div></div>
-        <div class="tk-reg texto-metal">${t.region}</div><div class="tk-nom">${t.nombre}</div></div></div>`).join("")}`;
+        <div class="tk-reg texto-metal">${t.region}</div><div class="tk-nom">${t.nombre}</div></div></div>`).join("")}
+      ${d.unoPorUno?`<div class="tk-foco"><div class="tel" style="width:330px;height:600px"><i class="bt b1"></i><i class="bt b2"></i><i class="bt b3"></i>
+          <div class="pant"><video muted playsinline preload="auto"></video><div class="isla"></div>
+            <div class="ui-d"><span>${tk(40)}</span><span>♥</span><span>💬</span><span>➦</span></div><div class="ui-i">#ConcursoTikTokIndurama</div></div></div>
+        <div class="tk-reg texto-metal"></div><div class="tk-nom"></div>
+        <div class="tk-puntos">${TIKTOKS.map(()=>'<i class="tk-punto"></i>').join("")}</div></div>`:""}`;
     esc.appendChild(el); return;
   }
   if(d.tipo==="embajadores"){
@@ -571,9 +589,25 @@ function ir(n){
     d.classList.toggle("activa",i===n);
     d.querySelectorAll("video").forEach(v=>{ if(i===n){v.currentTime=0;v.play().catch(()=>{});} else v.pause(); });
   });
+  diapos.forEach((d,i)=>{ if(i!==n) clearTimeout(d._t); });
+  if(diapos[n].classList.contains("tk-uno")) iniciarFoco(diapos[n]);
   actual=n;
 }
-const siguiente=()=>ir(actual+1), anterior=()=>{ if(actual===0) volverHistoria(); else ir(actual-1); };
+/* TikTok · propuesta 2: cada video 15 s, uno por uno; al final quedan los cinco en el abanico.
+   El clic (o →) durante la secuencia pasa al siguiente video; cuando ya están todos, pasa a la siguiente diapo. */
+const FOCO_SEG=15;
+function iniciarFoco(d){ clearTimeout(d._t); d.classList.remove("todos"); d._k=-1; d._fin=false; pasoFoco(d); }
+function pasoFoco(d){ clearTimeout(d._t); d._k++;
+  const f=d.querySelector(".tk-foco"), v=f.querySelector("video");
+  if(d._k>=TIKTOKS.length){ d._fin=true; v.pause(); d.classList.add("todos");
+    d.querySelectorAll(".tk-cel video").forEach(x=>{ x.currentTime=0; x.play().catch(()=>{}); }); return; }
+  const t=TIKTOKS[d._k];
+  f.classList.remove("ver");
+  setTimeout(()=>{ v.src=t.video; v.currentTime=0; v.play().catch(()=>{});
+    f.querySelector(".tk-reg").textContent=t.region; f.querySelector(".tk-nom").textContent=t.nombre;
+    f.querySelectorAll(".tk-punto").forEach((p,i)=>p.classList.toggle("on",i===d._k)); f.classList.add("ver"); }, d._k?450:0);
+  d._t=setTimeout(()=>{ if(diapos[actual]===d) pasoFoco(d); }, FOCO_SEG*1000); }
+const siguiente=()=>{ const d=diapos[actual]; if(d&&d.classList.contains("tk-uno")&&!d._fin){ pasoFoco(d); return; } ir(actual+1); }, anterior=()=>{ if(actual===0) volverHistoria(); else ir(actual-1); };
 /* en la primera diapo, ← vuelve al final de la presentación de los 3 años */
 const EN_MARCO=window.parent!==window;   // abierta dentro de la presentación de los 3 años
 addEventListener("message",e=>{ if((e.data||{}).t==="mostrar"){ document.getElementById("ayuda").classList.add("oculta"); diapos.forEach(x=>x.classList.remove("activa")); void document.body.offsetWidth; actual=-1; ir(0); } });
