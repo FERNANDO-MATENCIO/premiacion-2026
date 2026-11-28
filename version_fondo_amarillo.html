@@ -270,6 +270,47 @@ body.sin-siluetas .silueta{opacity:0}
 .diapo.activa.seis .premiado{transition-delay:calc(.6s + var(--k) * .12s)}
 .diapo.activa.seis .premiado .placa{transition-delay:calc(1.2s + var(--k) * .12s)}
 .diapo.activa.seis .premiado .tienda{transition-delay:calc(1.4s + var(--k) * .12s)}
+
+/* ---------- Embajadores de marca (7 tarjetas iguales, 4 + 3) ---------- */
+.embajadores .titulo{top:30px}
+.embajadores .titulo h1{font-size:84px!important}
+.embajadores .titulo .laurel{width:80px;height:120px}
+.embajadores .logo{transform:scale(.75);transform-origin:top right}
+.embajadores .puesto{top:150px}
+.emb-card{position:absolute;width:380px;height:340px;padding:4px;box-sizing:border-box;border-radius:8px;background:var(--oro-borde);
+  box-shadow:0 14px 34px rgba(0,0,0,.7),0 0 26px rgba(255,190,90,.25);opacity:0;transform:translateY(34px) scale(.96);
+  transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(1.2s + var(--k) * .15s)}
+.diapo.activa .emb-card{opacity:1;transform:none}
+.emb-card>div{height:100%;box-sizing:border-box;border-radius:5px;background:linear-gradient(180deg,rgba(32,24,10,.94),rgba(12,9,4,.94));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 22px;text-align:center}
+.emb-anios{display:flex;align-items:center;gap:6px}
+.emb-anios .laurel{width:46px;height:70px}
+.emb-anios div{display:flex;flex-direction:column;align-items:center}
+.emb-anios b{font:700 84px/1 'Cinzel',serif}
+.emb-anios small{font:700 20px 'CormSC',serif;letter-spacing:8px;color:#e8c77a;margin-top:4px}
+.emb-linea{width:150px;height:2px;margin:16px 0 14px;background:linear-gradient(90deg,transparent,#e8c77a,transparent)}
+.emb-nombre{font:700 34px/1.1 'CormSC',serif;letter-spacing:2px;color:#fff6e0;text-shadow:0 2px 8px #000;white-space:nowrap}
+.emb-cargo{font:500 20px/1.25 'CormSC',serif;letter-spacing:3px;color:#d9c08a;text-shadow:0 2px 8px #000;margin-top:8px;min-height:50px}
+
+/* ---------- Concurso TikTok (5 celulares en abanico, videos sin sonido) ---------- */
+.tk-cel{position:absolute;z-index:2;transform-origin:50% 100%}
+.tk-in{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(1s + var(--k) * .18s)}
+.diapo.activa .tk-in{opacity:1;transform:none}
+.tel{position:relative;box-sizing:border-box;padding:3px;border-radius:44px;background:var(--oro-borde);box-shadow:0 18px 44px rgba(0,0,0,.8),0 0 30px rgba(255,190,90,.3)}
+.tel .pant{position:relative;width:100%;height:100%;box-sizing:border-box;border:11px solid #0a0a0a;border-radius:41px;overflow:hidden;background:#000}
+.tel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tel .isla{position:absolute;top:10px;left:50%;width:84px;height:24px;margin-left:-42px;border-radius:14px;background:#000;z-index:3}
+.tel .bt{position:absolute;width:4px;border-radius:2px;background:linear-gradient(90deg,#9c6514,#f3d17d)}
+.tel .b1{left:-4px;top:110px;height:44px}.tel .b2{left:-4px;top:168px;height:70px}.tel .b3{right:-4px;top:150px;height:96px}
+.tel .pant::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent);z-index:2}
+.ui-d{position:absolute;right:8px;bottom:60px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:14px;font:700 26px Arial;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.ui-i{position:absolute;left:12px;right:60px;bottom:16px;z-index:3;font:400 13px Arial;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.tk-reg{margin-top:22px;text-align:center;font:700 30px/1.1 'CormSC',serif;letter-spacing:4px;white-space:nowrap}
+.tk-nom{margin-top:6px;text-align:center;font:500 22px 'CormSC',serif;letter-spacing:3px;color:#d9c08a;text-shadow:0 2px 8px #000;white-space:nowrap}
+.tk-nube{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.tiktok .titulo,.tiktok .puesto,.tiktok .logo{z-index:3}
+.tk-flota{position:absolute;top:1120px;opacity:.38;animation:tkSube linear infinite;filter:drop-shadow(0 0 10px rgba(37,244,238,.35))}
+@keyframes tkSube{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-1300px) rotate(var(--g))}}
 </style>
 </head>
 <body>
@@ -354,6 +395,19 @@ CATEGORIAS.forEach(c => {
     DIAPOS.push({ tipo: "premios", categoria: c.nombre, puesto: p,
                   grupos: ZONAS.map(z => ({ zona: z, premiados: PREMIADOS[c.nombre][z][p] })) }));
 });
+// Concurso TikTok: ganadores por región (videos sin sonido). Nombres: completar en "nombre".
+const TIKTOKS = [
+  { region: "LIMA SUR",      video: "videos/tiktok_lima_sur.mp4",    nombre: "NOMBRE DEL GANADOR" },
+  { region: "LIMA CENTRO",   video: "videos/tiktok_lima_centro.mp4", nombre: "NOMBRE DEL GANADOR" },
+  { region: "NORTE",         video: "videos/tiktok_norte.mp4",       nombre: "NOMBRE DEL GANADOR" },
+  { region: "SUR · ORIENTE", video: "videos/tiktok_oriente.mp4",     nombre: "NOMBRE DEL GANADOR" },
+  { region: "CENTRO NSCH",   video: "videos/tiktok_centro_nsch.mp4", nombre: "NOMBRE DEL GANADOR" }];
+DIAPOS.push({ tipo: "tiktok" });
+// Embajadores de marca: después de VENTAS · segundo puesto, antes del cierre
+const EMBAJADORES = [["Giovanna Palmieri","Asistente de Servicio",15],["Marisol Velasco","Gerente de Finanzas y Administración",10],
+  ["Mishell Nuñez","Asistente Comercial",10],["Karina Suarez","Vendedora",10],["Marcia Zuñiga","Vendedora",10],
+  ["Martha Mendoza","Vendedora",10],["Cesar Chacaltana","Vendedor",10]];
+DIAPOS.push({ tipo: "embajadores" });
 // Diapositiva final
 DIAPOS.push({ tipo: "cierre", titulo: "¡Felicitaciones", linea2: "a todos nuestros premiados!",
               frase: "Gracias por su compromiso durante el 2026" });
@@ -403,6 +457,34 @@ DIAPOS.forEach((d,i)=>{
         <div class="car-frase">Detrás de cada número, hay un equipo.<br>Hoy los reconocemos.</div>
       </div>
       <div class="tl i"></div><div class="tl d"></div><div class="haz"></div>`; esc.appendChild(el); return; }
+  if(d.tipo==="tiktok"){
+    el.className="diapo tiktok embajadores";
+    const NOTA="M30 4h6c1 5 5 9 10 9v6c-4 0-7.5-1.3-10-3.3V31a11 11 0 1 1-11-11h1v6.2a5 5 0 1 0 4 4.8Z";
+    const tk=s=>`<svg viewBox="0 0 48 48" width="${s}" height="${s}"><path d="${NOTA}" fill="#25F4EE" transform="translate(-1.6,-1.4)"/><path d="${NOTA}" fill="#FE2C55" transform="translate(1.6,1.4)"/><path d="${NOTA}" fill="#fff"/></svg>`;
+    let nube=""; for(let j=0;j<26;j++){ const s=34+((j*37)%60);
+      nube+=`<div class="tk-flota" style="left:${(j*151)%1880}px;animation-duration:${18+((j*7)%14)}s;animation-delay:${-((j*29)%30)}s;--g:${(j%2?1:-1)*(10+j%20)}deg">${tk(s)}</div>`; }
+    const rot=[-6,-3,0,3,6], dy=[40,12,0,12,40], w=290, hh=560, gap=44;
+    el.innerHTML=`<div class="tk-nube">${nube}</div><img class="logo" src="${LOGO}" alt="Indurama">
+      <div class="titulo">${laurel("lg"+i+"a","izq")}<h1>CONCURSO TIKTOK</h1>${laurel("lg"+i+"b","der")}</div>
+      <div class="puesto"><u></u><i></i><b class="texto-metal">GANADORES POR REGIÓN</b><i></i><u class="der"></u></div>
+      ${TIKTOKS.map((t,k)=>`<div class="tk-cel" style="left:${(1920-(5*w+4*gap))/2+k*(w+gap)}px;top:${214+dy[k]}px;width:${w}px;transform:rotate(${rot[k]}deg)"><div class="tk-in" style="--k:${k}">
+        <div class="tel" style="width:${w}px;height:${hh}px"><i class="bt b1"></i><i class="bt b2"></i><i class="bt b3"></i>
+          <div class="pant"><video data-src="${t.video}" muted loop playsinline preload="auto"></video><div class="isla"></div>
+            <div class="ui-d"><span>${tk(36)}</span><span>♥</span><span>💬</span><span>➦</span></div>
+            <div class="ui-i">#ConcursoTikTokIndurama</div></div></div>
+        <div class="tk-reg texto-metal">${t.region}</div><div class="tk-nom">${t.nombre}</div></div></div>`).join("")}`;
+    esc.appendChild(el); return;
+  }
+  if(d.tipo==="embajadores"){
+    el.innerHTML=`<img class="logo" src="${LOGO}" alt="Indurama">
+      <div class="titulo">${laurel("lg"+i+"a","izq")}<h1>EMBAJADORES DE MARCA</h1>${laurel("lg"+i+"b","der")}</div>
+      <div class="puesto"><u></u><i></i><b class="texto-metal">AÑOS QUE CONSTRUYEN LA MARCA</b><i></i><u class="der"></u></div>
+      ${EMBAJADORES.map(([n,c,a],k)=>{ const fila=k<4?0:1, col=fila?k-4:k, n0=fila?3:4, x=(1920-(n0*380+(n0-1)*34))/2+col*414, y=fila?640:250;
+        return `<div class="emb-card" style="--k:${k};left:${x}px;top:${y}px"><div>
+          <div class="emb-anios">${laurel("lge"+k+"a","izq")}<div><b class="texto-metal">${a}</b><small>AÑOS</small></div>${laurel("lge"+k+"b","der")}</div>
+          <div class="emb-linea"></div><div class="emb-nombre">${n}</div><div class="emb-cargo">${c}</div></div></div>`; }).join("")}`;
+    esc.appendChild(el); return;
+  }
   if(d.tipo==="caratula"||d.tipo==="cierre"){
     if(d.tipo==="cierre") el.className="diapo caratula cierre";
     el.innerHTML=`
