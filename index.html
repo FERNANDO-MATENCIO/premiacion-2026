@@ -421,11 +421,11 @@ CATEGORIAS.forEach(c => {
 });
 // Concurso TikTok: ganadores por región (videos sin sonido). Nombres: completar en "nombre".
 const TIKTOKS = [
-  { region: "LIMA SUR",      video: "videos/tiktok_lima_sur.mp4",    nombre: "NOMBRE DEL GANADOR" },
-  { region: "LIMA CENTRO",   video: "videos/tiktok_lima_centro.mp4", nombre: "NOMBRE DEL GANADOR" },
-  { region: "NORTE",         video: "videos/tiktok_norte.mp4",       nombre: "NOMBRE DEL GANADOR" },
-  { region: "SUR · ORIENTE", video: "videos/tiktok_oriente.mp4",     nombre: "NOMBRE DEL GANADOR" },
-  { region: "CENTRO NSCH",   video: "videos/tiktok_centro_nsch.mp4", nombre: "NOMBRE DEL GANADOR" }];
+  { region: "LIMA SUR",      video: "videos/tiktok_lima_sur.mp4",    audio: "videos/tiktok_lima_sur_audio.mp4",    nombre: "NOMBRE DEL GANADOR" },
+  { region: "LIMA CENTRO",   video: "videos/tiktok_lima_centro.mp4", audio: "videos/tiktok_lima_centro_audio.mp4", nombre: "NOMBRE DEL GANADOR" },
+  { region: "NORTE",         video: "videos/tiktok_norte.mp4",       audio: "videos/tiktok_norte_audio.mp4",       nombre: "NOMBRE DEL GANADOR" },
+  { region: "SUR · ORIENTE", video: "videos/tiktok_oriente.mp4",     audio: "videos/tiktok_oriente_audio.mp4",     nombre: "NOMBRE DEL GANADOR" },
+  { region: "CENTRO NSCH",   video: "videos/tiktok_centro_nsch.mp4", audio: "videos/tiktok_centro_nsch_audio.mp4", nombre: "NOMBRE DEL GANADOR" }];
 DIAPOS.push({ tipo: "tiktok" });
 DIAPOS.push({ tipo: "tiktok", unoPorUno: true });   // propuesta 2 (uno por uno). Borrar la que no se elija.
 // Embajadores de marca: después de VENTAS · segundo puesto, antes del cierre
@@ -499,7 +499,7 @@ DIAPOS.forEach((d,i)=>{
             <div class="ui-i">#ConcursoTikTokIndurama</div></div></div>
         <div class="tk-reg texto-metal">${t.region}</div><div class="tk-nom">${t.nombre}</div></div></div>`).join("")}
       ${d.unoPorUno?`<div class="tk-foco"><div class="tel" style="width:330px;height:600px"><i class="bt b1"></i><i class="bt b2"></i><i class="bt b3"></i>
-          <div class="pant"><video muted playsinline preload="auto"></video><div class="isla"></div>
+          <div class="pant"><video playsinline preload="auto"></video><div class="isla"></div>
             <div class="ui-d"><span>${tk(40)}</span><span>♥</span><span>💬</span><span>➦</span></div><div class="ui-i">#ConcursoTikTokIndurama</div></div></div>
         <div class="tk-reg texto-metal"></div><div class="tk-nom"></div>
         <div class="tk-puntos">${TIKTOKS.map(()=>'<i class="tk-punto"></i>').join("")}</div></div>`:""}`;
@@ -588,20 +588,24 @@ function ir(n){
     d.querySelectorAll("video").forEach(v=>{ if(i===n){v.currentTime=0;v.play().catch(()=>{});} else v.pause(); });
   });
   diapos.forEach((d,i)=>{ if(i!==n) clearTimeout(d._t); });
+  { const ant=diapos[actual]; if(ant&&ant!==diapos[n]&&ant.classList.contains("tk-uno")&&!ant._fin){ ant.querySelector(".tk-foco video").pause(); musicaPremBaja(false); } }
   if(diapos[n].classList.contains("tk-uno")) iniciarFoco(diapos[n]);
   actual=n;
 }
 /* TikTok · propuesta 2: cada video 15 s, uno por uno; al final quedan los cinco en el abanico.
    El clic (o →) durante la secuencia pasa al siguiente video; cuando ya están todos, pasa a la siguiente diapo. */
 const FOCO_SEG=15;
-function iniciarFoco(d){ clearTimeout(d._t); d.classList.remove("todos"); d._k=-1; d._fin=false; pasoFoco(d); }
+/* mientras suena un TikTok, la música de la premiación baja (si la premiación está dentro de la historia, la toca la página de afuera) */
+function musicaPremBaja(bajar){ if(window.parent!==window){ parent.postMessage({t:bajar?"musica-baja":"musica-sube"},"*"); return; }
+  if(!MUSP.paused) musPVol(bajar?0:(musPSil?0:MUSP_VOL),1); }
+function iniciarFoco(d){ clearTimeout(d._t); d.classList.remove("todos"); d._k=-1; d._fin=false; musicaPremBaja(true); pasoFoco(d); }
 function pasoFoco(d){ clearTimeout(d._t); d._k++;
   const f=d.querySelector(".tk-foco"), v=f.querySelector("video");
-  if(d._k>=TIKTOKS.length){ d._fin=true; v.pause(); d.classList.add("todos");
+  if(d._k>=TIKTOKS.length){ d._fin=true; v.pause(); d.classList.add("todos"); musicaPremBaja(false);
     d.querySelectorAll(".tk-cel video").forEach(x=>{ x.currentTime=0; x.play().catch(()=>{}); }); return; }
   const t=TIKTOKS[d._k];
   f.classList.remove("ver");
-  setTimeout(()=>{ v.src=t.video; v.currentTime=0; v.play().catch(()=>{});
+  setTimeout(()=>{ if(d._k>=TIKTOKS.length) return; v.src=t.audio||t.video; v.muted=false; v.volume=1; v.currentTime=0; v.play().catch(()=>{});
     f.querySelector(".tk-reg").textContent=t.region; f.querySelector(".tk-nom").textContent=t.nombre;
     f.querySelectorAll(".tk-punto").forEach((p,i)=>p.classList.toggle("on",i===d._k)); f.classList.add("ver"); }, d._k?450:0);
   d._t=setTimeout(()=>{ if(diapos[actual]===d) pasoFoco(d); }, FOCO_SEG*1000); }

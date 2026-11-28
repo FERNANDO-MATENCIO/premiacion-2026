@@ -1005,7 +1005,7 @@ function irPremiacion(){ prepararPremiacion(); Object.values(MUSICAS).forEach(a=
 function volverDePremiacion(){ if(!MUSP.paused) musPVol(0,2,()=>MUSP.pause()); document.body.classList.remove("en-premiacion"); window.focus(); ir(diapos.length-1); }
 addEventListener("message",e=>{ const m=e.data||{};
   if(m.t==="volver") volverDePremiacion();
-  else if(m.t==="musica"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(!MUSP.paused) musPVol(silencio?0:MUSP_VOL,.3); } else if(m.t==="fs"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); } });
+  else if(m.t==="musica-baja"){ if(!MUSP.paused) musPVol(0,1); } else if(m.t==="musica-sube"){ if(!MUSP.paused) musPVol(silencio?0:MUSP_VOL,1); } else if(m.t==="musica"){ silencio=!silencio; document.body.classList.toggle("silencio",silencio); if(!MUSP.paused) musPVol(silencio?0:MUSP_VOL,.3); } else if(m.t==="fs"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); } });
 /* títulos de región y nombres de tienda largos: se achican hasta caber */
 document.fonts.ready.then(()=>document.querySelectorAll(".r26-reg,.r26-tienda b").forEach(e=>{ const max=e.closest(".r26-lado").clientWidth-(e.tagName==="B"?260:0);
   let f=parseFloat(getComputedStyle(e).fontSize); while(e.scrollWidth>max&&f>30){ f-=2; e.style.fontSize=f+"px"; } }));
