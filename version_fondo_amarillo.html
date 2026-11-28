@@ -291,6 +291,20 @@ body.sin-siluetas .silueta{opacity:0}
 .emb-linea{width:150px;height:2px;margin:16px 0 14px;background:linear-gradient(90deg,transparent,#e8c77a,transparent)}
 .emb-nombre{font:700 34px/1.1 'CormSC',serif;letter-spacing:2px;color:#fff6e0;text-shadow:0 2px 8px #000;white-space:nowrap}
 .emb-cargo{font:500 20px/1.25 'CormSC',serif;letter-spacing:3px;color:#d9c08a;text-shadow:0 2px 8px #000;margin-top:8px;min-height:50px}
+/* versión M: marcos dorados finos, casi transparentes; los siete iguales, años en pequeño */
+.emb-lig{width:400px;height:230px;padding:0 14px;border:2px solid rgba(232,199,122,.75);border-radius:6px;
+  background:linear-gradient(180deg,rgba(20,15,6,.45),rgba(10,8,4,.55));box-shadow:inset 0 0 30px rgba(255,200,90,.08),0 10px 26px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.emb-lig::before{content:"";position:absolute;top:-2px;left:27%;width:46%;height:3px;background:linear-gradient(90deg,transparent,#fff3c2,transparent)}
+.emb-etq{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px}
+.emb-etq i{width:30px;height:1px;background:linear-gradient(90deg,transparent,#e8c77a)}.emb-etq i.der{transform:scaleX(-1)}
+.emb-etq span{font:700 20px 'CormSC',serif;letter-spacing:6px;color:#e8c77a}
+.emb-etq b{font:700 26px 'Cinzel',serif;letter-spacing:1px}
+.emb-lig .emb-nombre{font-size:38px}
+.emb-lig .emb-cargo{min-height:0;margin-top:10px;font-size:21px}
+.emb-lig .emb-cargo.largo{font-size:18px;letter-spacing:1.5px}
+.emb-lig>div{height:auto;background:none;padding:0;border-radius:0;display:block;box-shadow:none}
+.emb-lig>div.emb-etq{display:flex;flex-direction:row;align-items:center}
 
 /* ---------- Concurso TikTok (5 celulares en abanico, videos sin sonido) ---------- */
 .tk-cel{position:absolute;z-index:2;transform-origin:50% 100%}
@@ -479,10 +493,10 @@ DIAPOS.forEach((d,i)=>{
     el.innerHTML=`<img class="logo" src="${LOGO}" alt="Indurama">
       <div class="titulo">${laurel("lg"+i+"a","izq")}<h1>EMBAJADORES DE MARCA</h1>${laurel("lg"+i+"b","der")}</div>
       <div class="puesto"><u></u><i></i><b class="texto-metal">AÑOS QUE CONSTRUYEN LA MARCA</b><i></i><u class="der"></u></div>
-      ${EMBAJADORES.map(([n,c,a],k)=>{ const fila=k<4?0:1, col=fila?k-4:k, n0=fila?3:4, x=(1920-(n0*380+(n0-1)*34))/2+col*414, y=fila?640:250;
-        return `<div class="emb-card" style="--k:${k};left:${x}px;top:${y}px"><div>
-          <div class="emb-anios">${laurel("lge"+k+"a","izq")}<div><b class="texto-metal">${a}</b><small>AÑOS</small></div>${laurel("lge"+k+"b","der")}</div>
-          <div class="emb-linea"></div><div class="emb-nombre">${n}</div><div class="emb-cargo">${c}</div></div></div>`; }).join("")}`;
+      ${EMBAJADORES.map(([n,c,a],k)=>{ const fila=k<4?0:1, col=fila?k-4:k, n0=fila?3:4, w=400, gap=36, x=(1920-(n0*w+(n0-1)*gap))/2+col*(w+gap), y=fila?600:290;
+        return `<div class="emb-card emb-lig" style="--k:${k};left:${x}px;top:${y}px">
+          <div class="emb-etq"><i></i><span><b class="texto-metal">${a}</b> AÑOS</span><i class="der"></i></div>
+          <div class="emb-nombre">${n}</div><div class="emb-cargo${c.length>30?" largo":""}">${c}</div></div>`; }).join("")}`;
     esc.appendChild(el); return;
   }
   if(d.tipo==="caratula"||d.tipo==="cierre"){
